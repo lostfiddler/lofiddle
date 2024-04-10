@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            background-color: #001f3f;
+        }
+
+        #canvas {
+            margin: auto auto;
+            border: 3px solid #ffdc00;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="1000" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        /** @type {CanvasRenderingContext2D} */
+        const ctx = canvas.getContext("2d")
+
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+        let xspeed = 1;
+        let yspeed = 3.3;
+
+        window.requestAnimationFrame(draw);
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            x = x + xspeed;
+            y = y + yspeed;
+
+            if (x < 50 || x > canvas.width - 50) {
+                xspeed = xspeed * -1;
+            }
+            if (y < 50 || y > canvas.height - 50) {
+                yspeed = yspeed * -1;
+            }
+
+
+            ctx.beginPath();
+            ctx.arc(x, y, 50, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffdc00";
+            ctx.fill();
+
+
+
+            window.requestAnimationFrame(draw);
+        }
+    </script>
+</body>
+
+</html>

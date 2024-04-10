@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas width='1000' height='500'></canvas>
+    <script type="module">
+        import captureMouse from '../capture-mouse.js';
+
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        const mouse = captureMouse(canvas);
+        const log = document.createElement('pre');
+        const rect = { x: canvas.width / 2, y: canvas.height / 2 };
+
+        (function draw() {
+            window.requestAnimationFrame(draw);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const dx = rect.x - mouse.x;
+            const dy = rect.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            ctx.fillStyle = '#000';
+            ctx.fillRect(rect.x - 2, rect.y - 2, 4, 4);
+            // draw line
+            ctx.beginPath();
+            ctx.moveTo(rect.x, rect.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.closePath();
+            ctx.stroke();
+
+            log.textContent = dist;
+        }())
+
+        document.body.appendChild(log);
+    </script>
+</body>
+
+</html>

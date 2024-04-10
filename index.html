@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('load', async () => {
+            const res = await fetch('http://192.168.1.231:7000/get-books');
+            const data = await res.json();
+
+            data.forEach(book => {
+                const container = document.createElement('div');
+                const header = document.createElement('h1');
+                const list = document.createElement('ul');
+
+                header.textContent = book.title;
+
+                book.examples.forEach(example => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = example
+                        .replace(/_/g, ' ').replace('/', ': ').replace('.html', '');
+                    list.appendChild(listItem);
+                });
+
+                container.appendChild(header);
+                container.appendChild(list);
+                document.body.appendChild(container);
+            });
+            const test = document.createElement('ul');
+        })
+    </script>
+</body>
+
+</html>

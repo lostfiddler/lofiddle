@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mark I</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const img = new Image()
+        img.src = 'book.svg';
+        img.width = 300;
+        const speed = 0.005;
+        let i = 0;
+
+        animate();
+        function animate() {
+            window.requestAnimationFrame(animate)
+            img.style.transform = `translate(0, ${Math.sin(i) * 80}px)`
+            i += speed;
+        }
+
+        document.body.appendChild(img)
+    </script>
+</body>
+
+</html>

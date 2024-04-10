@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hello World</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<div id="fps"></div>
+
+<body>
+    <script>
+        const start = performance.now()
+        const fpsDisplay = document.getElementById("fps")
+
+        let fps;
+        let frameCount = 0;
+
+        function draw() {
+            fpsDisplay.textContent = `FPS: ${fps}`;
+        }
+
+        function animate(timeStamp) {
+            const elapsed = timeStamp - start;
+            fps = ((++frameCount * 1000) / elapsed).toFixed(2);
+
+            draw();
+
+            window.requestAnimationFrame(animate);
+        }
+
+        window.requestAnimationFrame(animate);
+
+
+        // References:
+        // ---
+        // https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+    </script>
+</body>
+
+</html>

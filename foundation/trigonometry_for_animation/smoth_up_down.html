@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sine Wave</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas width='1000' height='500'></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function Ball(radius, color) {
+            if (radius === undefined) { radius = 40; }
+            if (color === undefined) { color = '#f00'; }
+            this.x = 0;
+            this.y = 0;
+            this.radius = radius;
+            this.rotation = 0;
+            this.scaleX = 1;
+            this.scaleY = 1;
+            this.color = color;
+            this.lineWidth = 1;
+        }
+
+        Ball.prototype.draw = function (ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.scale(this.scaleX, this.scaleY);
+            ctx.lineWidth = this.lineWidth;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(0, 0, this.radius, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+            if (this.lineWidth > 0) {
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        window.onload = () => {
+            const ball = new Ball();
+            const debug = document.createElement('pre')
+            const speed = 0.1;
+            const centerY = canvas.height / 2
+            const range = 50;
+            let angle = 0;
+
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            console.log(ball);
+            (function draw() {
+                window.requestAnimationFrame(draw);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                ball.y = centerY + Math.sin(angle) * range;
+                angle += speed;
+                ball.draw(ctx);
+                debug.textContent = ball.y;
+            }())
+            document.body.appendChild(debug)
+        }
+    </script>
+</body>
+
+</html>

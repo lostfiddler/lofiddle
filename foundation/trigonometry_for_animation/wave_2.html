@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas width='1000' height='500'></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        const range = 50;
+        const centerY = canvas.height / 2;
+        const xspeed = 1;
+        const yspeed = 0.05;
+        let xpos = 0;
+        let ypos = centerY;
+        let angle = 0;
+
+        ctx.lineWidth = 2;
+
+        (function draw() {
+            window.requestAnimationFrame(draw);
+
+            ctx.beginPath();
+            ctx.moveTo(xpos, ypos);
+            xpos += xspeed;
+            angle += yspeed;
+            ypos = centerY + Math.sin(angle) * range;
+            ctx.lineTo(xpos, ypos);
+            ctx.stroke();
+        }())
+    </script>
+</body>
+
+</html>

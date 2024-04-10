@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hello World</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="300">
+        This browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        window.addEventListener('load', () => {
+            canvasApp();
+        }, false);
+
+        function canvasApp() {
+            const canvas = document.getElementById("canvas");
+            /** @type {CanvasRenderingContext2D} */
+            const context = canvas.getContext("2d");
+
+            drawScreen();
+
+            function drawScreen() {
+                context.fillStyle = "#ffffaa";
+                context.fillRect(0, 0, 500, 300);
+
+                const hello_world_image = new Image();
+                hello_world_image.onload = () => {
+                    context.drawImage(hello_world_image, 70, 10);
+                }
+                hello_world_image.src = "hello-world.png";
+            }
+        }
+    </script>
+</body>
+
+</html>

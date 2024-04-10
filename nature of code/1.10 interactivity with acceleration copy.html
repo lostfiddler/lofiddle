@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Interactivity with Acceleration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"
+        integrity="sha512-uaz5GpnQoE6t5echKlX8P52czvsIGgLPcvlzfvRubLZ1Hp8JemUDnbUiAahbVtPb+jUVrNETuXvAhDDF/N3M4w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="1000" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById("canvas");
+        /** @type {CanvasRenderingContext2D} */
+        const ctx = canvas.getContext("2d");
+
+        const width = canvas.width;
+        const height = canvas.height;
+
+        new p5();
+
+        let mouse = [];
+        document.addEventListener('mousemove', (e) => {
+            mouse = [e.clientX, e.clientY]
+        });
+
+
+        class Mover {
+            constructor() {
+                this.location = createVector(width / 2, height / 2);
+                this.velocity = createVector(0, 0);
+                this.direction;
+                this.acceleration;
+                this.topSpeed = 8;
+            }
+
+            update() {
+                this.direction = createVector(mouse[0] - this.location.x, mouse[1] - this.location.y)
+
+                this.direction.normalize();
+                this.direction.mult(0.75);
+                this.acceleration = this.direction;
+
+                this.velocity.add(this.acceleration);
+                this.velocity.limit(this.topSpeed);
+                this.location.add(this.velocity);
+            }
+
+            display() {
+                ctx.beginPath()
+                ctx.arc(this.location.x, this.location.y, 16, 0, 360);
+                ctx.fill();
+                console.log(this.location.x, this.location.y)
+            }
+
+            checkEdges() {
+                if (this.location.x > canvas.width) {
+                    this.location.x = 0;
+                } else if (this.location.x < 0) {
+                    this.location.x = canvas.width;
+                }
+
+                if (this.location.y > canvas.height) {
+                    this.location.y = 0;
+                } else if (this.location.y < 0) {
+                    this.location.y = canvas.height;
+                }
+            }
+        }
+
+        let mover = new Mover();
+
+        window.requestAnimationFrame(animate);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            mover.update();
+            mover.display();
+            mover.checkEdges();
+            window.requestAnimationFrame(animate)
+        }
+
+
+    </script>
+</body>
+
+</html>

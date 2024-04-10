@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Angle</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas id="canvas" width=500 height=500></canvas>
+    <input id=slider type=range min=0 max=360 value=0>
+
+    <script>
+        window.onload = () => {
+            app();
+        }
+
+        function app() {
+            const canvas = document.getElementById('canvas');
+            /** @type {CanvasRenderingContext2D} */
+            const ctx = canvas.getContext('2d');
+
+            const slider = document.getElementById('slider');
+
+            window.requestAnimationFrame(draw);
+
+            function draw() {
+                const degree = slider.value;
+                const toRadian = degree * Math.PI / 180; // Convert to radian for easier calculations
+                const theta = 2 * Math.PI - toRadian; // Change rotation of terminalSide to counterclockwise
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+                circle();
+                initialSide();
+                terminalSide(theta);
+
+                window.requestAnimationFrame(draw);
+            }
+
+            function circle() {
+                ctx.beginPath();
+                ctx.lineWidth = 2;
+                ctx.arc(250, 250, 100, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            function initialSide() {
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.strokeStyle = "#000000"
+                ctx.moveTo(250, 250);
+                ctx.lineTo(350, 250);
+                ctx.stroke();
+            }
+
+            function terminalSide(theta) {
+                ctx.beginPath();
+                ctx.strokeStyle = "#000000"
+                ctx.moveTo(250, 250);
+                ctx.lineTo(250 + 100 * Math.cos(theta), 250 + 100 * Math.sin(theta));
+                ctx.stroke();
+            }
+        }
+    </script>
+</body>
+
+</html>
