@@ -1,23 +1,7 @@
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import http from 'node:http'
 
-const foundationDir = readdirSync('./foundation', {
-    encoding: 'utf8',
-    recursive: true
-})
-
-function ch() {
-    const x = [];
-    const ignore = ['.js', '.png'];
-    const arr = foundationDir.filter(file => 
-        !ignore.some(ext => file.includes(ext))
-    )
-    const chapters = arr.filter(file => !file.includes('/'));
-    chapters.forEach(chap => {
-        x.push({chap, arr})
-    })
-    return x
-}
+import ch from './makeData.js' 
 
 console.log(ch())
 
