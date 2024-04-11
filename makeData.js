@@ -5,18 +5,23 @@ const foundationDir = readdirSync('./foundation', {
     recursive: true
 })
 
-export default function ch() {
-    const x = [];
+export default function chapters() {
+    const data = []
     const ignore = ['.js', '.png'];
-    const arr = foundationDir.filter(file => 
-        !ignore.some(ext => file.includes(ext))
-    )
-    const chapters = arr.filter(file => !file.includes('/'));
-    for (let i = 0; i < chapters.length; i++){
-        const chap = chapters[i]
-        x.push({chap, arr})
-    }
-    return x
-}
+    let chapter = {chapter: '', examples: []};
 
-console.log(ch())
+    for(let i = 0; i < foundationDir.length; i++) {
+        const file = foundationDir[i];
+
+        if (ignore.some(ext => file.includes(ext))) continue;
+        
+        // if file is a dir(chapter) -> push object to data array -> re-assign chapter variable to empty template obj
+        if (!file.includes('/')) {
+            chapter.chapter = file;   data.push(chapter);     chapter = {chapter: '', examples:[]};
+            continue;
+        }
+
+        data[data.findIndex(obj => file.includes(obj.chapter))].examples.push(file)
+    }
+    return data;
+}

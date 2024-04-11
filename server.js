@@ -1,17 +1,16 @@
 import { readFileSync } from 'node:fs';
 import http from 'node:http'
 
-import ch from './makeData.js' 
-
-console.log(ch())
+import chapters from './makeData.js' 
 
 const Books = [
     {
-        title: "Foundation HTML5 for Animation",
-        chapters: ''
-        //examples: foundationDir.filter(file => file.includes('.html'))
+        "book": "Foundation HTML5 for Animation",
+        "chapters": chapters()
     }
 ]
+
+console.log(JSON.stringify(Books));
 
 const server = http.createServer();
 
@@ -30,6 +29,6 @@ server.on('request', (request, res) => {
     res.end();
 });
 
-server.listen(7000, () => {
-    console.log('server listening')
-});
+//server.listen(7000, () => {
+//    console.log('server listening')
+//});
