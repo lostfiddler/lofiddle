@@ -5,9 +5,9 @@ const foundationDir = readdirSync('./foundation', {
     recursive: true
 })
 
-export default function chapters() {
+function makeBooksData() {
     const data = []
-    const ignore = ['.js', '.png'];
+    const ignore = ['.js', '.png', '.md'];
     let chapter = {chapter: '', examples: []};
 
     for(let i = 0; i < foundationDir.length; i++) {

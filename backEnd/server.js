@@ -1,21 +1,14 @@
 import { readFileSync } from 'node:fs';
 import http from 'node:http'
 
-import chapters from './makeData.js' 
-
-const Books = [
-    {
-        "book": "Foundation HTML5 for Animation",
-        "chapters": chapters()
-    }
-]
+import books from './bookData.js' 
 
 const server = http.createServer();
 
 server.on('request', (request, res) => {
     if(request.url === '/get-books') {
         res.writeHead(200, {'access-control-allow-origin': '*'});
-        res.write(JSON.stringify(Books));
+        res.write(JSON.stringify(books));
         res.end();
         return;
     }
