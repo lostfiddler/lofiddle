@@ -10,29 +10,44 @@
 
 <body>
     <script>
+        const log = console.log.bind(console)
         window.addEventListener('load', async () => {
             const res = await fetch('http://192.168.1.231:7000/get-books');
             const data = await res.json();
 
-            data.forEach(book => {
+            log(data);
+            for (let i = 0; i < data.length; i++) {
+                const book = data[i];
                 const container = document.createElement('div');
                 const header = document.createElement('h1');
-                const list = document.createElement('ul');
 
-                header.textContent = book.title;
-
-                book.examples.forEach(example => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = example
-                        .replace(/_/g, ' ').replace('/', ': ').replace('.html', '');
-                    list.appendChild(listItem);
-                });
+                header.textContent = book.book;
 
                 container.appendChild(header);
-                container.appendChild(list);
                 document.body.appendChild(container);
-            });
-            const test = document.createElement('ul');
+
+                for (let j = 0; j < book.chapters.length; j++) {
+                    const chapter = book.chapters[j];
+                    const list = document.createElement('ul');
+                    const header2 = document.createElement('h2');
+
+                    header2.textContent = chapter.chapter;
+                    container.appendChild(header2);
+
+                    for (let k = 0; k < chapter.examples.length; k++) {
+                        const example = chapter.examples[k];
+                        const item = document.createElement('li');
+                        const link = document.createElement('a');
+
+                        link.href = 'foundation/' + example;
+                        link.textContent = example;
+                        
+                        item.appendChild(link);
+                        list.appendChild(item);
+                    }
+                    container.appendChild(list);
+                }
+            }
         })
     </script>
 </body>
