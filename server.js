@@ -29,6 +29,6 @@ server.on('request', (request, res) => {
     res.end();
 });
 
-//server.listen(7000, () => {
-//    console.log('server listening')
-//});
+server.listen(7000, () => {
+    console.log('server listening')
+});

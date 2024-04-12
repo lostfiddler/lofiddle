@@ -14,7 +14,7 @@ export default function chapters() {
         const file = foundationDir[i];
 
         if (ignore.some(ext => file.includes(ext))) continue;
-        
+
         // if file is a dir(chapter) -> push object to data array -> re-assign chapter variable to empty template obj
         if (!file.includes('/')) {
             chapter.chapter = file;   data.push(chapter);     chapter = {chapter: '', examples:[]};
