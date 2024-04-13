@@ -44,5 +44,3 @@ function makeBooksData() {
 }
 
 export const data = makeBooksData();
-
-console.log(JSON.stringify(data))
