@@ -1,27 +1,48 @@
 import { readdirSync } from 'node:fs';
 
-const foundationDir = readdirSync('./foundation', {
+const books = readdirSync('../frontEnd/books', {
     encoding: 'utf8',
     recursive: true
 })
 
 function makeBooksData() {
-    const data = []
+    const data = [];
     const ignore = ['.js', '.png', '.md'];
-    let chapter = {chapter: '', examples: []};
 
-    for(let i = 0; i < foundationDir.length; i++) {
-        const file = foundationDir[i];
+    let chapter = {chapter: '', examples: []};
+    let book = {book: '', chapters: []};
+
+    for(let i = 0; i < books.length; i++) {
+        const file = books[i];
 
         if (ignore.some(ext => file.includes(ext))) continue;
 
-        // if file is a dir(chapter) -> push object to data array -> re-assign chapter variable to empty template obj
-        if (!file.includes('/')) {
-            chapter.chapter = file;   data.push(chapter);     chapter = {chapter: '', examples:[]};
+        // parent dir corresponds to book, push to data array, clear book variable
+        if(!file.includes('/')) {
+            book.book = file; data.push(book); book = {book: '', chapters: []};
             continue;
         }
 
-        data[data.findIndex(obj => file.includes(obj.chapter))].examples.push(file)
+        // sub dir corresponds to chapter, search data array for corresponding book,
+        // push to book.chapters array, clear chapter variable
+        if(file.includes('/') && !file.includes('.')) {
+            const sep = file.indexOf('/');
+
+            chapter.chapter = file.slice(sep + 1);
+            data[data.findIndex(obj => file.includes(obj.book))].chapters.push(chapter);
+            chapter = {chapter: '', examples: []};
+            continue;
+        }
+
+        // search for corresponding book, access its chapters[] symbol,
+        // search chapters[] for corresponding chapter, push file to its examples[]
+        const chs = data[data.findIndex(obj => file.includes(obj.book))].chapters
+        chs[chs.findIndex(obj => file.includes(obj.chapter))].examples.push(file)
     }
+
     return data;
 }
+
+export const data = makeBooksData();
+
+console.log(JSON.stringify(data))
