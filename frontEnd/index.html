@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <script>
+    <script type=module>
+        import {titleCase} from "https://esm.sh/title-case@4.3.1"
         const log = console.log.bind(console)
         window.addEventListener('load', async () => {
             const res = await fetch('http://192.168.1.231:7000/get-books');
@@ -21,7 +22,7 @@
                 const container = document.createElement('div');
                 const header = document.createElement('h1');
 
-                header.textContent = book.book;
+                header.textContent = titleCase(book.book.replace(/_/g, ' '))
 
                 container.appendChild(header);
                 document.body.appendChild(container);
@@ -31,7 +32,7 @@
                     const list = document.createElement('ul');
                     const header2 = document.createElement('h2');
 
-                    header2.textContent = chapter.chapter;
+                    header2.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
                     container.appendChild(header2);
 
                     for (let k = 0; k < chapter.examples.length; k++) {
@@ -39,8 +40,8 @@
                         const item = document.createElement('li');
                         const link = document.createElement('a');
 
-                        link.href = 'foundation/' + example;
-                        link.textContent = example;
+                        link.href = example;
+                        link.textContent = example.slice(example.lastIndexOf('/') + 1).replace('.html', '').replace(/_/g, ' ');
                         
                         item.appendChild(link);
                         list.appendChild(item);
