@@ -15,7 +15,7 @@ server.on('request', (request, res) => {
         return;
     }
 
-    if(['.html', '.css', '.js'].some(ext => request.url.includes(ext))) {
+    if(['HTM5_Canvas', 'foundation_html5_for_animation', 'nature_of_code'].some(ext => request.url.includes(ext))) {
         res.writeHead(200, {
             'access-control-allow-origin': '*',
             'content-type': {
@@ -25,6 +25,20 @@ server.on('request', (request, res) => {
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
         res.write(readFileSync('./frontEnd/books/' + request.url))
+        res.end();
+        return;
+    }
+
+    if(['.html', '.css', '.js'].some(ext => request.url.includes(ext))) {
+        res.writeHead(200, {
+            'access-control-allow-origin': '*',
+            'content-type': {
+                '.js': 'text/javascript',
+                '.css': 'text/css',
+                '.html': 'text/html'
+            }[request.url.slice(request.url.lastIndexOf('.'))]
+        })
+        res.write(readFileSync('./frontEnd' + request.url))
         res.end();
         return;
     }
