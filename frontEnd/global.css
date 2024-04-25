@@ -1,7 +1,33 @@
 body {
     color: red;
+    display: flex;
+    margin: 0;
+}
+
+ul {
+    margin: 0 0 1.2rem 0;
+    padding: 0;
+    list-style-type: none;
 }
 
 a {
     text-decoration: none;
+}
+
+canvas {
+    border: 1px solid red;
+    background: #222;
+}
+
+.book {
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid red;
+}
+
+.book > h1 {
+    font-size: 1.2rem;
+}
+
+.book > h2 {
+    font-size: 1rem;
 }

@@ -7,7 +7,7 @@ const books = readdirSync('./frontEnd/books', {
 
 function makeBooksData() {
     const data = [];
-    const ignore = ['.js', '.png', '.md'];
+    const ignore = ['.png', '.md', 'utils'];
 
     let chapter = {chapter: '', examples: []};
     let book = {book: '', chapters: []};
