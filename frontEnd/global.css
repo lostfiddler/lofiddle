@@ -1,7 +1,12 @@
+:root {
+    --sidebar-width: 300px;
+}
+
 body {
     color: red;
-    display: flex;
     margin: 0;
+    display: grid;
+    grid-template-columns: 300px 1fr;
 }
 
 ul {
@@ -14,14 +19,41 @@ a {
     text-decoration: none;
 }
 
+main {
+    margin: 0 auto;
+}
+
 canvas {
     border: 1px solid red;
     background: #222;
 }
 
+.sidebarWrapper{
+    width: 300px;
+}
+
+#sidebar {
+    position: fixed;
+    width: inherit;
+    height: 100%;
+    border-right: 1px solid red;
+    overflow: auto;
+}
+
 .book {
     margin-bottom: 1.4rem;
+}
+
+.book:after {
+    content: '';
+    display: block;
+    width: 20%;
+    padding-top: 1.4rem;
     border-bottom: 1px solid red;
+}
+
+.book:last-child:after {
+    display: none;
 }
 
 .book > h1 {
@@ -29,5 +61,6 @@ canvas {
 }
 
 .book > h2 {
+    margin: 0;
     font-size: 1rem;
 }
