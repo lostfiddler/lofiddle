@@ -49,4 +49,5 @@ async function foo(e) {
     document.querySelector('main').replaceChildren();
     const module = await import(e.target.href)
     module.default()
+    Prism.highlightAll()
 }

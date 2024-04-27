@@ -45,6 +45,7 @@ main.appendChild(debug);
 
 const codeContainer = document.createElement('pre');
 const codeBlock = document.createElement('code');
+codeBlock.className = 'language-javascript';
 
 codeBlock.textContent = `const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
