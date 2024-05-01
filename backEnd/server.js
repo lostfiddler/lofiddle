@@ -10,7 +10,7 @@ server.on('request', (request, res) => {
         res.writeHead(200, {
             'access-control-allow-origin': '*'
         })
-        res.write(readFileSync('./frontEnd/index.html'));
+        res.write(readFileSync('./frontEnd/index.html', 'utf8'));
         res.end();
         return;
     }

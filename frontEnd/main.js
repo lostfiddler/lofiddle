@@ -1,8 +1,7 @@
 import {titleCase} from "https://esm.sh/title-case@4.3.1"
 
-const res = await fetch('http://192.168.1.231:7000/get-books');
+const res = await fetch('/get-books');
 const data = await res.json();
-console.log(data)
 
 const sidebar = document.querySelector('#sidebar');
 
@@ -22,6 +21,7 @@ for (let i = 0; i < data.length; i++) {
         const chapter = book.chapters[j];
         const list = document.createElement('ul');
         const header2 = document.createElement('h2');
+        console.log(`${book.book}/${chapter.chapter}`)
 
         header2.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
         container.appendChild(header2);
