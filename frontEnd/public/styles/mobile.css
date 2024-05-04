@@ -1,0 +1,32 @@
+@media only screen and (max-width: 768px) {
+    .menuIcon {
+        display: block;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) 
+        saturate(0%) hue-rotate(279deg) brightness(104%) contrast(101%);
+    }
+
+    .sidebarWrapper {
+        position: absolute;
+        width: 0%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+
+    .sidebarWrapper.responsive {
+        width: 85%;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.responsive {
+        display: block;
+        background: red;
+        position: fixed;
+        z-index: 1;
+        width: inherit;
+    }
+}

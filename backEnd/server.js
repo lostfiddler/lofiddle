@@ -22,7 +22,7 @@ server.on('request', (request, res) => {
                 '.js': 'text/javascript',
                 '.css': 'text/css',
                 '.html': 'text/html',
-                '.png': 'image/png'
+                '.png': 'image/png',
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
         res.write(readFileSync('./frontEnd/books' + request.url))
@@ -30,14 +30,15 @@ server.on('request', (request, res) => {
         return;
     }
 
-    if(['.html', '.css', '.js', '.png'].some(ext => request.url.includes(ext))) {
+    if(['.html', '.css', '.js', '.png', '.svg'].some(ext => request.url.includes(ext))) {
         res.writeHead(200, {
             'access-control-allow-origin': '*',
             'content-type': {
                 '.js': 'text/javascript',
                 '.css': 'text/css',
                 '.html': 'text/html',
-                '.png': 'image/png'
+                '.png': 'image/png',
+                '.svg': 'image/svg+xml'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
         res.write(readFileSync('./frontEnd' + request.url))
