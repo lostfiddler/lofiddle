@@ -1,12 +1,7 @@
-// TODO vite
 import http from 'node:http';
 import routes from './routes.js';
 
-function myMiddleware() {
-    console.log('buzz')
-}
-
-const server = http.createServer(myMiddleware);
+const server = http.createServer();
 
 server.on('request', (request, res) => {
     routes({ request, res });
