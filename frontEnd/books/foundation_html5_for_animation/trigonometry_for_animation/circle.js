@@ -1,6 +1,10 @@
 import Ball from '../utils/ball.js';
 
 export default () => {
+    canvasApp();
+}
+
+function canvasApp() {
     const main = document.querySelector('main');
     const canvas = document.createElement('canvas');
     canvas.width = 1066;

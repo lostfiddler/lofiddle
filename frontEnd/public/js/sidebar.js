@@ -23,10 +23,31 @@ class SidebarElement extends HTMLElement{
         const menu = this.createMenuElements();
         const style = document.createElement('style')
 
-        // TODO - styling
+        // TODO - mobile styling
         style.textContent = `
             :host {
+                --width: 23%;
+                --padding: 1rem;
+                width: calc(var(--width) + calc(var(--padding) * 2));
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            a {
+                text-decoration: none;
+            }
+            menu {
+                position: fixed;
+                width: var(--width);
                 background: #222;
+                height: 100%;
+                margin: 0;
+                padding: var(--padding);
+                list-style-type: none;
+            }
+            ul {
+                padding-left: 1rem;
+                list-style-type: none;
             }
         `
 
@@ -46,8 +67,10 @@ class SidebarElement extends HTMLElement{
             for (let i = 0; i < books.length;i++) {
                 const book = data[i];
                 const book_htmlElement = document.createElement('li');
+                const book_h1Element = document.createElement('h1');
 
-                book_htmlElement.textContent = titleCase(book.book.replace(/_/g, ' '))
+                book_h1Element.textContent = titleCase(book.book.replace(/_/g, ' '));
+                book_htmlElement.appendChild(book_h1Element);
                 parentHtmlElement.appendChild(book_htmlElement);
                 
                 createChaptersList(book.chapters, book_htmlElement);
