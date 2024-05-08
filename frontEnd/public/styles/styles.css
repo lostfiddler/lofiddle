@@ -1,26 +1,11 @@
-/**
- * CONTENTS
- *
- * Global..................Globally available variables and config.
- *
- * Base....................Body, H1-H6, link, etc...
- *
- * Sidebar.................Main site navigation.
- *
- */
-
-
-
-
-
-
-
-
-/*-------------------------*
- * #Global
- *-------------------------*/
-
-
+@font-face {
+    font-family: 'EB Garamond';
+    src: url(../fonts/EBGaramond-Italic-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: 'Sedan SC';
+    src: url(../fonts/SedanSC-Regular.ttf);
+}
 
 
 :root {
@@ -30,105 +15,18 @@
     --blue0: #767693;
     --grey: #333;
 }
-
-
-
-
-/*-------------------------*
- * #Base
- * ------------------------*/
-
-
-
-
 body {
+    font-family: sans-serif;
     background: var(--bg0);
     color: var(--fg0);
     display: flex;
     margin: 0;
 }
-
-a {
-    text-decoration: none;
-    color: var(--fg0);
-}
-
-a:hover {
-    color: var(--blue);
-}
-
 main {
+    width: 75%;
+    text-align: center;
     margin: 0 auto;
 }
-
 canvas {
     background: #222;
-}
-
-
-
-
-/*-------------------------*
- * #Sidebar
- * ------------------------*/
-
-
-
-
-.sidebarWrapper{
-    padding-right: 1rem;
-    width: 20%;
-}
-
-.sidebar {
-    position: fixed;
-    height: 100%;
-    width: inherit;
-    padding-right: 1rem;
-    border-right: 2px solid var(--grey);
-    overflow: auto;
-}
-
-.book {
-    margin-bottom: 1.4rem;
-}
-
-.book:after {
-    content: '';
-    display: block;
-    width: 20%;
-    padding-top: 1.4rem;
-    border-bottom: 1px solid var(--grey);
-}
-
-.book:last-child:after {
-    display: none;
-}
-
-.book > ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-.book > ul, h1, h2 {
-    margin-left: 1rem;
-}
-
-.book > ul > li {
-    margin: 2px 0;}
-
-.book > h1 {
-    font-size: 1.2rem;
-    color: var(--blue)
-}
-
-.book > h2 {
-    margin-bottom: 0;
-    font-size: 1rem;
-    font-style: bold;
-    color: var(--blue0);
-}
-
-.burgerIcon {
-    display: none;
 }

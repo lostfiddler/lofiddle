@@ -30,11 +30,12 @@ class SidebarElement extends HTMLElement{
                 --padding: 1rem;
                 width: calc(var(--width) + calc(var(--padding) * 2));
             }
-            h1 {
-                font-size: 1.4rem;
-            }
             a {
                 text-decoration: none;
+                color: inherit;
+            }
+            a:hover {
+                color: #049EF4;
             }
             menu {
                 position: fixed;
@@ -46,8 +47,14 @@ class SidebarElement extends HTMLElement{
                 list-style-type: none;
             }
             ul {
-                padding-left: 1rem;
+                padding: 0;
                 list-style-type: none;
+            }
+            .bookTitle {
+                color: #049EF4;
+            }
+            .chapterTitle {
+                font-weight: 900;
             }
         `
 
@@ -67,10 +74,11 @@ class SidebarElement extends HTMLElement{
             for (let i = 0; i < books.length;i++) {
                 const book = data[i];
                 const book_htmlElement = document.createElement('li');
-                const book_h1Element = document.createElement('h1');
+                const book_titleElement = document.createElement('span')
+                book_titleElement.classList = 'bookTitle';
 
-                book_h1Element.textContent = titleCase(book.book.replace(/_/g, ' '));
-                book_htmlElement.appendChild(book_h1Element);
+                book_titleElement.textContent = titleCase(book.book.replace(/_/g, ' '));
+                book_htmlElement.appendChild(book_titleElement);
                 parentHtmlElement.appendChild(book_htmlElement);
                 
                 createChaptersList(book.chapters, book_htmlElement);
@@ -85,8 +93,11 @@ class SidebarElement extends HTMLElement{
             for (let i = 0; i < chapters.length;i++) {
                 const chapter = chapters[i];
                 const chapter_htmlElement = document.createElement('ul');
+                const chapter_titleElement = document.createElement('span')
+                chapter_titleElement.classList = 'chapterTitle';
 
-                chapter_htmlElement.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
+                chapter_titleElement.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
+                chapter_htmlElement.appendChild(chapter_titleElement)
                 parentHtmlElement.appendChild(chapter_htmlElement);
 
                 createExamplesList(chapter.examples, chapter_htmlElement);
@@ -104,7 +115,7 @@ class SidebarElement extends HTMLElement{
                 const link_htmlElement = document.createElement('a')
 
                 link_htmlElement.href = example;
-                link_htmlElement.textContent = example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' ');
+                link_htmlElement.textContent = titleCase(example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' '));
                 link_htmlElement.addEventListener('click', clickHandler)
                 example_htmlElement.appendChild(link_htmlElement);
                 parentHtmlElement.appendChild(example_htmlElement);
