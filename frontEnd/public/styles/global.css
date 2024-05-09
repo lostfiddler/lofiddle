@@ -11,9 +11,6 @@
 :root {
     --bg0: #171717;
     --fg0: #ddd;
-    --blue: #aaaace;
-    --blue0: #767693;
-    --grey: #333;
 }
 body {
     font-family: sans-serif;
