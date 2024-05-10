@@ -10,6 +10,7 @@ const data = await res.json();
 class SidebarElement extends HTMLElement{
     constructor() {
         super();
+        this.menu = document.createElement('menu');
     }
 
     connectedCallback() {
@@ -20,54 +21,12 @@ class SidebarElement extends HTMLElement{
         if (this.shadowRoot) return;
 
         const shadow = this.attachShadow({mode: 'open'});
-        const menu = this.createMenuElements();
-        const style = document.createElement('style')
 
-        // TODO - mobile styling
-        style.textContent = `
-            :host {
-                background: #222;
-                width: 300px;
-                padding: 1rem;
-            }
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
-            a:hover {
-                color: #049EF4;
-            }
-            menu {
-                position: fixed;
-                width: inherit;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                list-style-type: none;
-            }
-            ul {
-                padding: 0;
-                list-style-type: none;
-            }
-            li {
-                margin: 1px 0;
-            }
-            .bookTitle {
-                font-size: 1.2rem;
-                color: #049EF4;
-            }
-            .chapterTitle {
-                font-weight: 900;
-            }
-        `
-
-        shadow.append(style, menu)
+        shadow.append(this.styling(), this.createChildren())
     }
 
-    createMenuElements() {
-        const menu = document.createElement('menu');
-
-        createBooksList(data, menu);
+    createChildren() {
+        createBooksList(data, this.menu);
 
         /**
          * @param {Array<Book>} books
@@ -132,7 +91,51 @@ class SidebarElement extends HTMLElement{
                 render({request: event.target.href});
             }
         }
-        return menu;
+        return this.menu;
+    }
+
+    styling() {
+        const style = document.createElement('style')
+
+        // TODO - mobile styling
+        style.textContent = `
+            :host {
+                background: #222;
+                width: 300px;
+                padding: 1rem;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            a:hover {
+                color: #049EF4;
+            }
+            menu {
+                position: fixed;
+                width: inherit;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            ul {
+                padding: 0;
+                list-style-type: none;
+            }
+            li {
+                margin: 1px 0;
+            }
+            .bookTitle {
+                font-size: 1.2rem;
+                color: #049EF4;
+            }
+            .chapterTitle {
+                font-weight: 900;
+            }
+        `
+
+        return style;
     }
 };
 
