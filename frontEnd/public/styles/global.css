@@ -6,23 +6,22 @@
     font-family: 'Sedan SC';
     src: url(../fonts/SedanSC-Regular.ttf);
 }
-
-
 :root {
     --bg0: #171717;
     --fg0: #ddd;
 }
 body {
     font-family: sans-serif;
+    font-size: 14px;
     background: var(--bg0);
     color: var(--fg0);
     display: flex;
+    height: 100vh;
     margin: 0;
 }
 main {
-    width: 75%;
     text-align: center;
-    margin: 0 auto;
+    flex-grow: 1;
 }
 canvas {
     background: #222;

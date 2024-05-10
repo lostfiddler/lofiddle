@@ -26,9 +26,9 @@ class SidebarElement extends HTMLElement{
         // TODO - mobile styling
         style.textContent = `
             :host {
-                --width: 23%;
-                --padding: 1rem;
-                width: calc(var(--width) + calc(var(--padding) * 2));
+                background: #222;
+                width: 300px;
+                padding: 1rem;
             }
             a {
                 text-decoration: none;
@@ -39,18 +39,21 @@ class SidebarElement extends HTMLElement{
             }
             menu {
                 position: fixed;
-                width: var(--width);
-                background: #222;
+                width: inherit;
                 height: 100%;
                 margin: 0;
-                padding: var(--padding);
+                padding: 0;
                 list-style-type: none;
             }
             ul {
                 padding: 0;
                 list-style-type: none;
             }
+            li {
+                margin: 1px 0;
+            }
             .bookTitle {
+                font-size: 1.2rem;
                 color: #049EF4;
             }
             .chapterTitle {
@@ -93,7 +96,7 @@ class SidebarElement extends HTMLElement{
             for (let i = 0; i < chapters.length;i++) {
                 const chapter = chapters[i];
                 const chapter_htmlElement = document.createElement('ul');
-                const chapter_titleElement = document.createElement('span')
+                const chapter_titleElement = document.createElement('li')
                 chapter_titleElement.classList = 'chapterTitle';
 
                 chapter_titleElement.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
