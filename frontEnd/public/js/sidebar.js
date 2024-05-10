@@ -22,10 +22,12 @@ class SidebarElement extends HTMLElement{
 
         const shadow = this.attachShadow({mode: 'open'});
 
-        shadow.append(this.styling(), this.createChildren())
+        shadow.append(this.styling(), ...this.createChildren())
     }
 
     createChildren() {
+        const header = document.createElement('div');
+
         createBooksList(data, this.menu);
 
         /**
@@ -91,7 +93,7 @@ class SidebarElement extends HTMLElement{
                 render({request: event.target.href});
             }
         }
-        return this.menu;
+        return [header, this.menu];
     }
 
     styling() {
