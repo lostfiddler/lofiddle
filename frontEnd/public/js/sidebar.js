@@ -10,7 +10,9 @@ const data = await res.json();
 class SidebarElement extends HTMLElement{
     constructor() {
         super();
+        this.panel = document.createElement('div'), this.panel.className = 'panel';
         this.menu = document.createElement('menu');
+        this.header = document.createElement('div'), this.header.className = 'header';
     }
 
     connectedCallback() {
@@ -22,11 +24,15 @@ class SidebarElement extends HTMLElement{
 
         const shadow = this.attachShadow({mode: 'open'});
 
-        shadow.append(this.styling(), ...this.createChildren())
+        shadow.append(this.styling(), this.createChildren())
     }
 
     createChildren() {
-        const header = document.createElement('div');
+        this.panel.append(this.header, this.menu);
+        const heading = document.createElement('span');
+        heading.classList = 'heading';
+        heading.textContent = 'Animations';
+        this.header.appendChild(heading)
 
         createBooksList(data, this.menu);
 
@@ -93,7 +99,7 @@ class SidebarElement extends HTMLElement{
                 render({request: event.target.href});
             }
         }
-        return [header, this.menu];
+        return this.panel;
     }
 
     styling() {
@@ -102,9 +108,8 @@ class SidebarElement extends HTMLElement{
         // TODO - mobile styling
         style.textContent = `
             :host {
-                background: #222;
                 width: 300px;
-                padding: 1rem;
+                margin-right: 1rem;
             }
             a {
                 text-decoration: none;
@@ -113,11 +118,23 @@ class SidebarElement extends HTMLElement{
             a:hover {
                 color: #049EF4;
             }
-            menu {
+            .panel {
                 position: fixed;
                 width: inherit;
+                padding-left: 1rem;
                 height: 100%;
-                margin: 0;
+                background: #222;
+            }
+            .header {
+                margin-left: -1rem;
+                padding: 0.5rem 0;
+                background: #1565c0;
+                > .heading {
+                    font-size: 1.4rem;
+                    padding-left: 1rem;
+                }
+            }
+            menu {
                 padding: 0;
                 list-style-type: none;
             }
