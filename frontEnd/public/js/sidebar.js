@@ -1,3 +1,6 @@
+// @ts-check
+
+// @ts-ignore
 import {titleCase} from 'https://esm.sh/title-case@4.3.1';
 import render from './render.js';
 
@@ -13,6 +16,7 @@ class SidebarElement extends HTMLElement{
         this.panel = document.createElement('div'), this.panel.className = 'panel';
         this.menu = document.createElement('menu');
         this.header = document.createElement('div'), this.header.className = 'header';
+        this.icon = document.createElement('img');
     }
 
     connectedCallback() {
@@ -27,12 +31,33 @@ class SidebarElement extends HTMLElement{
         shadow.append(this.styling(), this.createChildren())
     }
 
+    menuIcon() {
+        const menu = this.menu;
+        this.icon.alt = 'menu icon';
+        this.icon.src = './public/images/menu-icon.svg';
+        this.icon.width = 36;
+        this.icon.addEventListener('click', clickHandler);
+
+        /** @param {Event} e */
+        function clickHandler(e) {
+            menu.className += 'open';
+            e.stopPropagation();
+
+            window.addEventListener('click', (e) => {
+                menu.className = '';
+                console.log('bar');
+            }, {once: true});
+        }
+
+        return this.icon;
+    }
+
     createChildren() {
         this.panel.append(this.header, this.menu);
         const heading = document.createElement('span');
-        heading.classList = 'heading';
+        heading.className = 'heading';
         heading.textContent = 'Animations';
-        this.header.appendChild(heading)
+        this.header.append(this.menuIcon(), heading)
 
         createBooksList(data, this.menu);
 
@@ -45,7 +70,7 @@ class SidebarElement extends HTMLElement{
                 const book = data[i];
                 const book_htmlElement = document.createElement('li');
                 const book_titleElement = document.createElement('span')
-                book_titleElement.classList = 'bookTitle';
+                book_titleElement.className = 'bookTitle';
 
                 book_titleElement.textContent = titleCase(book.book.replace(/_/g, ' '));
                 book_htmlElement.appendChild(book_titleElement);
@@ -64,7 +89,7 @@ class SidebarElement extends HTMLElement{
                 const chapter = chapters[i];
                 const chapter_htmlElement = document.createElement('ul');
                 const chapter_titleElement = document.createElement('li')
-                chapter_titleElement.classList = 'chapterTitle';
+                chapter_titleElement.className = 'chapterTitle';
 
                 chapter_titleElement.textContent = titleCase(chapter.chapter.replace(/_/g, ' '));
                 chapter_htmlElement.appendChild(chapter_titleElement)
@@ -124,6 +149,7 @@ class SidebarElement extends HTMLElement{
                 padding-left: 1rem;
                 height: 100%;
                 background: #222;
+                overflow: auto;
             }
             .header {
                 margin-left: -1rem;
@@ -152,8 +178,37 @@ class SidebarElement extends HTMLElement{
             .chapterTitle {
                 font-weight: 900;
             }
+            img {
+                display: none;
+                filter: brightness(0) saturate(100%) invert(100%) sepia(68%) saturate(0%) hue-rotate(67deg) brightness(114%) contrast(101%);
+            }
         `
-
+        style.textContent += `
+            @media screen and (max-width: 768px) {
+                :host {
+                    display: block;
+                    width: inherit;
+                }
+                .panel {
+                    position: static;
+                    height: inherit;
+                    width: 100%
+                }
+                img {
+                    display: block;
+                    padding: 0.5rem;
+                }
+                .heading {
+                    display: none;
+                }
+                menu {
+                    display: none;
+                    .open& {
+                        display: block;
+                    }
+                }
+            }
+        `
         return style;
     }
 };

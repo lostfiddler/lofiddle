@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    <sidebar-element></sidebar-element>
+    <!-- onclick=null is to fix a bug on mobile safari where click events don't bubble up to window
+        https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html -->
+    <sidebar-element onclick=null></sidebar-element>
     <main></main>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>

@@ -26,3 +26,8 @@ main {
 canvas {
     background: #222;
 }
+@media screen and (max-width: 768px) {
+    body {
+        display: block;
+    }
+}
