@@ -32,6 +32,7 @@ class SidebarElement extends HTMLElement{
     }
 
     menuIcon() {
+        const panel = this.panel;
         const menu = this.menu;
         this.icon.alt = 'menu icon';
         this.icon.src = './public/images/menu-icon.svg';
@@ -40,12 +41,13 @@ class SidebarElement extends HTMLElement{
 
         /** @param {Event} e */
         function clickHandler(e) {
-            menu.className += 'open';
+            panel.classList.toggle('open')
+            menu.classList.toggle('open');
             e.stopPropagation();
 
-            window.addEventListener('click', (e) => {
-                menu.className = '';
-                console.log('bar');
+            window.addEventListener('click', (_e) => {
+                panel.classList.toggle('open');
+                menu.classList.toggle('open');
             }, {once: true});
         }
 
@@ -149,7 +151,6 @@ class SidebarElement extends HTMLElement{
                 padding-left: 1rem;
                 height: 100%;
                 background: #222;
-                overflow: auto;
             }
             .header {
                 margin-left: -1rem;
@@ -190,9 +191,19 @@ class SidebarElement extends HTMLElement{
                     width: inherit;
                 }
                 .panel {
-                    position: static;
+                    position: relative;
                     height: inherit;
-                    width: 100%
+                    width: 100%;
+                    .open& {
+                        position: fixed;
+                        height: 100%;
+                        overflow: auto;
+                    }
+                    .header {
+                        position: sticky;
+                        top: 0;
+                        left: 0;
+                    }
                 }
                 img {
                     display: block;
