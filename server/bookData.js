@@ -1,6 +1,6 @@
 import { readdirSync } from 'node:fs';
 
-const books = readdirSync('./frontEnd/books', {
+const books = readdirSync('../frontEnd/books', {
     encoding: 'utf8',
     recursive: true
 })
