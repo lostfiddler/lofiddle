@@ -24,7 +24,7 @@ export default (props) => {
                 '.png': 'image/png',
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
-        res.write(readFileSync('./frontEnd/books' + request.url))
+        res.write(readFileSync('../frontEnd/books' + request.url))
         res.end();
         return;
     }
@@ -41,7 +41,7 @@ export default (props) => {
                 '.ttf': 'font/ttf'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
-        res.write(readFileSync('./frontEnd' + request.url))
+        res.write(readFileSync('../frontEnd' + request.url))
         res.end();
         return;
     }
