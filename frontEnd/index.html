@@ -7,13 +7,15 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='public/styles/sanitize.css'>
-    <link rel='stylesheet' href='public/styles/styles.css'>
+    <link rel='stylesheet' href='public/styles/global.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-duotone-space.min.css"
     integrity="sha512-QXwARzyR5/KTWULy+3O5V57CaYhT/sKpQtXFO5z3F4gZwghZGXgR3ACsZesQ9CKUlaOFUToSWKxwSnMAsaNPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <sidebar-element></sidebar-element>
+    <!-- onclick=null is to fix a bug on mobile safari where click events don't bubble up to window
+        https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html -->
+    <sidebar-element onclick=null></sidebar-element>
     <main></main>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>

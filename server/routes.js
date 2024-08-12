@@ -9,7 +9,7 @@ export default (props) => {
         res.writeHead(200, {
             'access-control-allow-origin': '*'
         })
-        res.write(readFileSync('./frontEnd/index.html', 'utf8'));
+        res.write(readFileSync('../frontEnd/index.html', 'utf8'));
         res.end();
         return;
     }
@@ -29,7 +29,7 @@ export default (props) => {
         return;
     }
 
-    if(['.html', '.css', '.js', '.png', '.svg'].some(ext => request.url.includes(ext))) {
+    if(['.html', '.css', '.js', '.png', '.svg', '.ttf'].some(ext => request.url.includes(ext))) {
         res.writeHead(200, {
             'access-control-allow-origin': '*',
             'content-type': {
@@ -37,7 +37,8 @@ export default (props) => {
                 '.css': 'text/css',
                 '.html': 'text/html',
                 '.png': 'image/png',
-                '.svg': 'image/svg+xml'
+                '.svg': 'image/svg+xml',
+                '.ttf': 'font/ttf'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         })
         res.write(readFileSync('./frontEnd' + request.url))

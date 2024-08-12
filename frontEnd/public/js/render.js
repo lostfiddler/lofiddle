@@ -1,7 +1,5 @@
-export default (props) => {
-    console.log(props.request)
-    // TODO
-    // import js file
-    // replace main content with html from file
-    // Prism.highlightAll() - highlight syntax
+export default async (props) => {
+    const module = await import(props.request)
+    document.querySelector('main').replaceChildren(), module.default();
+    Prism.highlightAll();
 }

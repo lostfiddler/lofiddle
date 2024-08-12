@@ -6,5 +6,6 @@ Each has been taken and inspired from the examples in the following books,
 ## TODO
 - Make canvas's responsive
 - Add mobile responsiveness
-- Start writing content
-- Make cache for data sent from backEnd to improve performance
+<<<<<<< HEAD
+=======
+>>>>>>> frontEnd
