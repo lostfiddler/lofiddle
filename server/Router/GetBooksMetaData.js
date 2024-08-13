@@ -6,7 +6,7 @@ export default function GetBooksMetaData(_request, res) {
     return;
 }
 
-const books = readdirSync('../frontEnd/data', {
+const books = readdirSync('../articles', {
     encoding: 'utf8',
     recursive: true
 })

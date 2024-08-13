@@ -9,7 +9,7 @@ export default function GetArticle(request, res) {
         'access-control-allow-origin': '*',
         'content-type': MIMEType(ext)
     })
-    res.write(readFileSync('../frontEnd/data' + request.url))
+    res.write(readFileSync('../articles' + request.url))
     res.end();
     return;
 }
