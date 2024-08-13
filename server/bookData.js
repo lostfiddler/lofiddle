@@ -1,13 +1,13 @@
 import { readdirSync } from 'node:fs';
 
-const books = readdirSync('../frontEnd/books', {
+const books = readdirSync('../frontEnd/data', {
     encoding: 'utf8',
     recursive: true
 })
 
 function makeBooksData() {
     const data = [];
-    const ignore = ['.png', '.md', 'utils'];
+    const ignore = ['.png', '.md', 'utils', 'misc'];
 
     let chapter = {chapter: '', examples: []};
     let book = {book: '', chapters: []};

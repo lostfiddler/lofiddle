@@ -36,7 +36,7 @@ class SidebarElement extends HTMLElement{
         const panel = this.panel;
         const menu = this.menu;
         this.icon.alt = 'menu icon';
-        this.icon.src = './public/images/menu-icon.svg';
+        this.icon.src = '../images/menu-icon.svg';
         this.icon.width = 36;
         this.icon.addEventListener('click', clickHandler);
 

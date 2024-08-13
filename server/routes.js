@@ -18,7 +18,7 @@ export default (props) => {
             'access-control-allow-origin': '*',
             'content-type': mime_type(request.url.slice(request.url.lastIndexOf('.')))
         })
-        res.write(readFileSync('../frontEnd/books' + request.url))
+        res.write(readFileSync('../frontEnd/data' + request.url))
         res.end();
         return;
     }
