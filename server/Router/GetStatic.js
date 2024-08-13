@@ -5,7 +5,11 @@ export default function GetStatic(request, res){
     const ext = request.url.slice(request.url.lastIndexOf('.'))
 
     res.setHeader('content-type', MIMEType(ext))
-    res.write(readFileSync('../frontEnd' + request.url))
+    res.write(readFileSync(
+        ext === '.ttf' ?
+        request.url : // fonts are stored in machine home directory
+        '../frontEnd' + request.url
+    ))
     res.end();
     return;
 }

@@ -1,17 +1,17 @@
 @font-face {
     font-family: 'EB Garamond';
-    src: url(../fonts/EBGaramond-Italic-VariableFont_wght.ttf);
+    src: url(/home/ian/fonts/serif/EB_Garamond/EBGaramond-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: 'Sedan SC';
-    src: url(../fonts/SedanSC-Regular.ttf);
+    src: url(/home/ian/fonts/serif/Sedan_SC/SedanSC-Regular.ttf);
 }
 :root {
     --bg0: #171717;
     --fg0: #ddd;
 }
 body {
-    font-family: sans-serif;
+    font-family: 'EB Garamond';
     font-size: 14px;
     background: var(--bg0);
     color: var(--fg0);
