@@ -2,6 +2,7 @@
 
 // @ts-ignore
 import {titleCase} from 'https://esm.sh/title-case@4.3.1';
+import MenuButton from './MenuButton.js'
 import render from './render.js';
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
@@ -31,30 +32,8 @@ class SidebarElement extends HTMLElement{
         shadow.append(this.styling(), this.createChildren())
     }
 
-    menuIcon() {
-        const host = this
-        const panel = this.panel;
-        const menu = this.menu;
-        this.icon.alt = 'menu icon';
-        this.icon.src = '../images/menu-icon.svg';
-        this.icon.width = 36;
-        this.icon.addEventListener('click', clickHandler);
-
-        /** @param {Event} e */
-        function clickHandler(e) {
-            host.classList.toggle('open');
-            panel.classList.toggle('open')
-            menu.classList.toggle('open');
-            e.stopPropagation();
-
-            window.addEventListener('click', (_e) => {
-                host.classList.toggle('open');
-                panel.classList.toggle('open');
-                menu.classList.toggle('open');
-            }, {once: true});
-        }
-
-        return this.icon;
+    MenuButtonWrapper() {
+        return MenuButton(this, this.panel, this.menu, this.icon)
     }
 
     createChildren() {
@@ -62,7 +41,7 @@ class SidebarElement extends HTMLElement{
         const heading = document.createElement('span');
         heading.className = 'heading';
         heading.textContent = 'Animations';
-        this.header.append(this.menuIcon(), heading)
+        this.header.append(this.MenuButtonWrapper(), heading)
 
         createBooksList(data, this.menu);
 
