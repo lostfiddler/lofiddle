@@ -2,7 +2,7 @@
 import MenuButton from './MenuButton.js'
 import SidebarChildren from './SidebarChildren.js'
 
-class SidebarElement extends HTMLElement{
+export default class SidebarElement extends HTMLElement{
     constructor() {
         super();
         this.panel = document.createElement('div'), this.panel.className = 'panel';
