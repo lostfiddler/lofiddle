@@ -5,11 +5,11 @@ import render from './render.js'
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
-const res = await fetch('/get-books');
-/** @type {Array<Book>} */
-const data = await res.json();
 
-export default function SidebarChildren(panel, header, menu, menuButton) {
+export default async function SidebarChildren(panel, header, menu, menuButton) {
+    const res = await fetch('/get-books');
+    /** @type {Array<Book>} */
+    const data = await res.json();
     panel.append(header, menu);
     const heading = document.createElement('span');
     heading.className = 'heading';

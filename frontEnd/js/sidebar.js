@@ -15,12 +15,12 @@ export default class SidebarElement extends HTMLElement{
         this._updateRendering();
     }
 
-    _updateRendering() {
+    async _updateRendering() {
         if (this.shadowRoot) return;
 
         const shadow = this.attachShadow({mode: 'open'});
 
-        shadow.append(this.styling(), this.SidebarChildrenWrapper())
+        shadow.append(this.styling(), await this.SidebarChildrenWrapper())
     }
 
     MenuButtonWrapper() {
