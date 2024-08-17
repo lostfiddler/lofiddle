@@ -1,7 +1,10 @@
 import {readdirSync} from 'node:fs'
 
 export default function GetBooksMetaData(_request, res) {
+    res.statusCode = 200;
+
     res.write(JSON.stringify(BooksMetaData()));
+
     res.end();
     return;
 }
