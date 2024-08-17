@@ -6,9 +6,7 @@ export default function GetStatic(request, res){
 
     res.setHeader('content-type', MIMEType(ext))
     res.write(readFileSync(
-        ext === '.ttf' ?
-        request.url : // fonts are stored in machine home directory
-        '../frontEnd' + request.url
+        '../frontEnd/dist' + request.url
     ))
     res.end();
     return;
