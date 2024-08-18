@@ -9,6 +9,10 @@ export default function GetStatic(request, res){
     res.statusCode = 200;
 
     res.write(readFileSync(
+        process.env.ENV === 'dev' ?
+        ext === '.ttf' ?
+        request.url :
+        '../frontEnd' + request.url :
         '../frontEnd/dist' + request.url
     ))
 

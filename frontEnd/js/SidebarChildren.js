@@ -7,7 +7,7 @@ import render from './render.js'
 
 
 export default async function SidebarChildren(panel, header, menu, menuButton) {
-    const res = await fetch('/get-books');
+    const res = await fetch('/api/get-books');
     /** @type {Array<Book>} */
     const data = await res.json();
     panel.append(header, menu);
@@ -64,12 +64,10 @@ export default async function SidebarChildren(panel, header, menu, menuButton) {
         for (let i = 0; i < examples.length;i++) {
             const example = examples[i];
             const example_htmlElement = document.createElement('li');
-            const link_htmlElement = document.createElement('a')
 
-            link_htmlElement.href = example;
-            link_htmlElement.textContent = titleCase(example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' '));
-            link_htmlElement.addEventListener('click', clickHandler)
-            example_htmlElement.appendChild(link_htmlElement);
+            example_htmlElement.setAttribute('route', example) 
+            example_htmlElement.textContent = titleCase(example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' '));
+            example_htmlElement.addEventListener('click', clickHandler)
             parentHtmlElement.appendChild(example_htmlElement);
         }
 
@@ -78,7 +76,7 @@ export default async function SidebarChildren(panel, header, menu, menuButton) {
          */
         function clickHandler(event) {
             event.preventDefault();
-            render({request: event.target.href});
+            render(event.target.getAttribute('route'));
         }
     }
     return panel;
