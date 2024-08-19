@@ -3,7 +3,7 @@
 //import GetStatic from './GetStatic.js'
 import GetBooksMetaData from './GetBooksMetaData.js'
 
-export default (props) => {
+export default function routes(props) {
     const { request, res } = props;
 
     // I am using vite now which handles these tasks
@@ -23,7 +23,7 @@ export default (props) => {
     //     GetArticle(request, res)
     //     return;
     // } 
-    if (request.url === '/get-books') {
+    if (request.url === '/api/get-books' || request.url === '/get-books') {
         GetBooksMetaData(request, res)
         return;
     }

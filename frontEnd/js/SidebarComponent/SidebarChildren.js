@@ -7,7 +7,11 @@ import render from '../api/render.js'
 
 
 export default async function SidebarChildren(panel, header, menu, menuButton) {
-    const res = await fetch('/api/get-books');
+    const res = await fetch(
+        import.meta.env.PROD === true ?
+        'http://api.ianparkinson.studio/api/get-books':
+        '/api/get-books'
+    );
     /** @type {Array<Book>} */
     const data = await res.json();
     panel.append(header, menu);
