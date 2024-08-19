@@ -9,7 +9,5 @@ export default async (route) => {
     
     const [book, chapter, example] = route.replace('.js', '').split('/')
 
-    const module = await import(`../../../articles/${book}/${chapter}/${example}.js`)
-
-    document.querySelector('#app').appendChild(module.default());
+    return await import(`../../../articles/${book}/${chapter}/${example}.js`)
 }

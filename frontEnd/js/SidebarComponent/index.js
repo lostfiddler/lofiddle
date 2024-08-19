@@ -1,6 +1,6 @@
 import MenuButton from './MenuButton.js'
 import SidebarChildren from './SidebarChildren.js'
-import StyleSheet from './styles.css?inline'
+import StyleSheet from './styles.css?inline' // vite only
 
 export default class SidebarElement extends HTMLElement{
     constructor() {
