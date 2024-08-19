@@ -1,4 +1,4 @@
-import SidebarElement from './sidebar.js'
+import SidebarElement from './SidebarComponent/index.js'
 
 console.log('kat')
 const Sidebar = new SidebarElement

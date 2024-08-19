@@ -1,4 +1,4 @@
-import menuUrl from '../images/menu.png';
+import menuUrl from '../../images/menu.png';
 
 export default function MenuButton(host, panel, menu, icon) {
     icon.alt = 'menu icon';

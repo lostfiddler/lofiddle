@@ -1,7 +1,7 @@
 // @ts-check
 // @ts-ignore
 import {titleCase} from 'https://esm.sh/title-case@4.3.1'
-import render from './render.js'
+import render from '../api/render.js'
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
