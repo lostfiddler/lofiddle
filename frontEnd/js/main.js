@@ -1,7 +1,10 @@
-import SidebarElement from './SidebarComponent/index.js';
-import PostComponent from './PostComponent/index.js';
+import SidebarComponent from './SidebarComponent/index.js';
+import ArticleComponent from './ArticleComponent/index.js';
 
-const app = document.querySelector('#app')
+const state = {};
+const app = document.querySelector('#app');
+const Sidebar = new SidebarComponent(state);
+const Article = new ArticleComponent(state);
 
-app.appendChild(new SidebarElement)
-app.appendChild(new PostComponent)
+app.appendChild(Sidebar);
+app.appendChild(Article);
