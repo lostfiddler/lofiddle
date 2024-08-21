@@ -1,15 +1,17 @@
 import MenuButton from './MenuButton.js'
 import SidebarChildren from './SidebarChildren.js'
-import StyleSheet from './styles.css?inline' // vite only
+import StyleSheet from './styles.css?inline' // vite specific
 
-export default class SidebarElement extends HTMLElement{
-    constructor() {
+export default class SidebarComponent extends HTMLElement{
+    constructor(state) {
         super();
-        this.panel = document.createElement('div'), this.panel.className = 'panel';
-        this.menu = document.createElement('menu');
-        this.header = document.createElement('div'), this.header.className = 'header';
-        this.icon = document.createElement('img');
+        this.state = state;
     }
+
+    panel = document.createElement('div')
+    menu = document.createElement('menu');
+    header = document.createElement('div');
+    icon = document.createElement('img');
 
     connectedCallback() {
         this._updateRendering();
@@ -18,11 +20,13 @@ export default class SidebarElement extends HTMLElement{
     async _updateRendering() {
         if (this.shadowRoot) return;
 
+        console.log(this.state)
         const shadow = this.attachShadow({mode: 'open'});
 
         shadow.append(
             this.Styles(),
             await SidebarChildren(
+                this.state,
                 this.panel,
                 this.header,
                 this.menu,
@@ -31,11 +35,13 @@ export default class SidebarElement extends HTMLElement{
     }
 
     Styles() {
-        const style = document.createElement('style')
+        const style = document.createElement('style');
+        this.panel.className = 'panel';
+        this.header.className = 'header';
         style.innerText = StyleSheet;
 
         return style;
     }
 };
 
-customElements.define('sidebar-element', SidebarElement);
+customElements.define('sidebar-component', SidebarComponent);
