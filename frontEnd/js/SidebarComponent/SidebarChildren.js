@@ -1,19 +1,14 @@
 // @ts-check
 // @ts-ignore
 import {titleCase} from 'https://esm.sh/title-case@4.3.1'
-import render from '../api/render.js'
+import GetBooks from '../api/GetBooks.js'
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
 
-export default async function SidebarChildren(panel, header, menu, menuButton) {
-    const res = await fetch(
-        import.meta.env.PROD === true ?
-        'http://api.ianparkinson.studio/api/get-books':
-        '/api/get-books'
-    );
+export default async function SidebarChildren(state, panel, header, menu, menuButton) {
     /** @type {Array<Book>} */
-    const data = await res.json();
+    const data = await GetBooks();
     panel.append(header, menu);
     const heading = document.createElement('span');
     heading.className = 'heading';
@@ -80,7 +75,8 @@ export default async function SidebarChildren(panel, header, menu, menuButton) {
          */
         function clickHandler(event) {
             event.preventDefault();
-            render(event.target.getAttribute('route'));
+            //TODO
+            // render()
         }
     }
     return panel;
