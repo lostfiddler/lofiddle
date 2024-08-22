@@ -1,9 +1,9 @@
 export default class PostComponent extends HTMLElement {
     static observedAttributes = ["data"]
 
-    constructor(foo) {
+    constructor(state) {
         super()
-        this.foo = foo
+        this.state = state
     }
 
     connectedCallback() {
@@ -18,7 +18,11 @@ export default class PostComponent extends HTMLElement {
         button.innerText = 'click'
         button.onclick = () => {
             this.setAttribute('data', 'I got this')
+            console.log(this.state)
         }
+        window.addEventListener('popstate', e => {
+            console.log(e)
+        })
         shadow.appendChild(button)
         console.log(this.foo)
     }

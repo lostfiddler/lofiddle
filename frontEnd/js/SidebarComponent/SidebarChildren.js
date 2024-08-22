@@ -64,7 +64,7 @@ export default async function SidebarChildren(state, panel, header, menu, menuBu
             const example = examples[i];
             const example_htmlElement = document.createElement('li');
 
-            example_htmlElement.setAttribute('route', example) 
+            example_htmlElement.setAttribute('href', example) 
             example_htmlElement.textContent = titleCase(example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' '));
             example_htmlElement.addEventListener('click', clickHandler)
             parentHtmlElement.appendChild(example_htmlElement);
@@ -75,8 +75,13 @@ export default async function SidebarChildren(state, panel, header, menu, menuBu
          */
         function clickHandler(event) {
             event.preventDefault();
-            //TODO
-            // render()
+
+            const href = event.target.getAttribute('href')
+            const tail = href.slice(href.lastIndexOf('/'))
+
+            history.pushState(null, '', tail)
+            const popStateEvent = new PopStateEvent('popstate', {state: 'foo'});
+            dispatchEvent(popStateEvent)
         }
     }
     return panel;
