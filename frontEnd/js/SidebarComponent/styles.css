@@ -1,7 +1,5 @@
 :host {
     flex: none;
-    position: relative;
-    width: 300px;
 }
 a {
     text-decoration: none;
@@ -10,30 +8,31 @@ a {
 a:hover {
     color: #049EF4;
 }
-.header {
-    margin-left: -1rem;
-    padding: 0.5rem 0;
-    background: #1565c0;
-    > .heading {
-        font-size: 1.4rem;
-        padding-left: 1rem;
-    }
+.navigation-wrapper {
+    position: relative;
+    width: 300px;
+    height: 100vh;
 }
-menu {
+.navigation {
     position: fixed;
     background: #222;
-    top: 0;
+    width: 300px;
     height: 100vh;
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
-ul {
-    padding: 0;
-    list-style-type: none;
+.title {
+    background: #1565c0;
+    margin: 0;
+    padding: 1rem 0;
 }
-li {
+.book {
     margin: 1px 0;
+    > ul {
+        padding: 0;
+        list-style-type: none;
+    }
 }
 .bookTitle {
     font-size: 1.2rem;

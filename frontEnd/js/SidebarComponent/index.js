@@ -1,34 +1,40 @@
 import MenuButton from './MenuButton.js'
-import SidebarChildren from './SidebarChildren.js'
+import Children from './SidebarChildren.js'
 import StyleSheet from './styles.css?inline' // vite specific
 
 export default class SidebarComponent extends HTMLElement{
-    constructor(state) {
+    constructor() {
         super();
-        this.state = state;
+        this.navigation = document.createElement('ul');
+        this.header = document.createElement('div');
+        this.icon = document.createElement('img');
+
+        this.navigation.classList = 'navigation';
     }
-
-    menu = document.createElement('menu');
-    header = document.createElement('div');
-    icon = document.createElement('img');
-
     connectedCallback() {
         this._updateRendering();
     }
 
     async _updateRendering() {
         if (this.shadowRoot) return;
-
-        console.log(this.state)
         const shadow = this.attachShadow({mode: 'open'});
+
+        const ChildrenWrapper = document.createElement('div')
+        ChildrenWrapper.className = 'navigation-wrapper';
+        this.navigation.appendChild(this.title())
+        ChildrenWrapper.append(await Children(this.navigation))
 
         shadow.append(
             this.Styles(),
-            await SidebarChildren(
-                this.header,
-                this.menu,
-                MenuButton(this, this.menu, this.icon)
-        ))
+            ChildrenWrapper
+        )
+    }
+
+    title() {
+        const title = document.createElement('h1');
+        title.className = 'title'
+        title.textContent = 'Animations';
+        return title;
     }
 
     Styles() {

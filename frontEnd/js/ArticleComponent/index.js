@@ -5,6 +5,7 @@ export default class PostComponent extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({mode: 'open'})
+        this.styleSheet = document.createElement('style')
 
         window.addEventListener('popstate', async (e) => {
             const path = e.state;
@@ -12,7 +13,7 @@ export default class PostComponent extends HTMLElement {
 
             this.canvasApp = module.canvasApp()
             this.article = module.article()
-            this.shadow.replaceChildren(this.canvasApp, this.article)
+            this.shadow.replaceChildren(this.styleSheet, this.canvasApp, this.article)
         });
     }
 
@@ -21,14 +22,12 @@ export default class PostComponent extends HTMLElement {
     }
 
     RenderView() {
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = Style
+        this.styleSheet.textContent = Style;
 
         const kitten = document.createElement('span');
         kitten.textContent = 'all you need is love! no, hatred is the only way!';
 
-        this.shadow.appendChild(styleSheet)
-        this.shadow.appendChild(kitten)
+        this.shadow.append(this.styleSheet, kitten)
     }
 }
 

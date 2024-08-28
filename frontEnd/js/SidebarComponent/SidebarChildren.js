@@ -6,15 +6,11 @@ import GetBooks from '../api/GetBooks.js'
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
 
-export default async function SidebarChildren(header, menu, menuButton) {
+export default async function SidebarChildren(navigation) {
     /** @type {Array<Book>} */
     const data = await GetBooks();
-    const heading = document.createElement('span');
-    heading.className = 'heading';
-    heading.textContent = 'Animations';
-    header.append(menuButton, heading)
 
-    createBooksList(data, menu);
+    createBooksList(data, navigation);
 
     /**
      * @param {Array<Book>} books
@@ -25,6 +21,7 @@ export default async function SidebarChildren(header, menu, menuButton) {
             const book = data[i];
             const book_htmlElement = document.createElement('li');
             const book_titleElement = document.createElement('span')
+            book_htmlElement.className = 'book'
             book_titleElement.className = 'bookTitle';
 
             book_titleElement.textContent = titleCase(book.book.replace(/_/g, ' '));
@@ -83,5 +80,5 @@ export default async function SidebarChildren(header, menu, menuButton) {
             dispatchEvent(popStateEvent);
         }
     }
-    return menu
+    return navigation
 }
