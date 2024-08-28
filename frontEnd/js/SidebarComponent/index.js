@@ -8,7 +8,6 @@ export default class SidebarComponent extends HTMLElement{
         this.state = state;
     }
 
-    panel = document.createElement('div')
     menu = document.createElement('menu');
     header = document.createElement('div');
     icon = document.createElement('img');
@@ -26,17 +25,14 @@ export default class SidebarComponent extends HTMLElement{
         shadow.append(
             this.Styles(),
             await SidebarChildren(
-                this.state,
-                this.panel,
                 this.header,
                 this.menu,
-                MenuButton(this, this.panel, this.menu, this.icon)
+                MenuButton(this, this.menu, this.icon)
         ))
     }
 
     Styles() {
         const style = document.createElement('style');
-        this.panel.className = 'panel';
         this.header.className = 'header';
         style.innerText = StyleSheet;
 

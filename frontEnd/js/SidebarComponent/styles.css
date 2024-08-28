@@ -1,6 +1,7 @@
 :host {
+    flex: none;
+    position: relative;
     width: 300px;
-    margin-right: 1rem;
 }
 a {
     text-decoration: none;
@@ -8,13 +9,6 @@ a {
 }
 a:hover {
     color: #049EF4;
-}
-.panel {
-    position: fixed;
-    width: inherit;
-    padding-left: 1rem;
-    height: 100%;
-    background: #222;
 }
 .header {
     margin-left: -1rem;
@@ -26,6 +20,11 @@ a:hover {
     }
 }
 menu {
+    position: fixed;
+    background: #222;
+    top: 0;
+    height: 100vh;
+    margin: 0;
     padding: 0;
     list-style-type: none;
 }
