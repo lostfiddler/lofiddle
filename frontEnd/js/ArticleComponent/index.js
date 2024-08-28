@@ -1,34 +1,34 @@
-export default class PostComponent extends HTMLElement {
-    static observedAttributes = ["data"]
+import GetArticle from './Article.js'
+import Style from './style.css?inline'
 
-    constructor(state) {
+export default class PostComponent extends HTMLElement {
+    constructor() {
         super()
-        this.state = state
+        this.shadow = this.attachShadow({mode: 'open'})
+
+        window.addEventListener('popstate', async (e) => {
+            const path = e.state;
+            const module = await GetArticle(path)
+
+            this.canvasApp = module.canvasApp()
+            this.article = module.article()
+            this.shadow.replaceChildren(this.canvasApp, this.article)
+        });
     }
 
     connectedCallback() {
-        this.render();
+        this.RenderView();
     }
 
-    render() {
-        if(this.shadowRoot) return;
+    RenderView() {
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = Style
 
-        const shadow = this.attachShadow({mode: 'open'});
-        const button = document.createElement('button');
-        button.innerText = 'click'
-        button.onclick = () => {
-            this.setAttribute('data', 'I got this')
-            console.log(this.state)
-        }
-        window.addEventListener('popstate', e => {
-            console.log(e)
-        })
-        shadow.appendChild(button)
-        console.log(this.foo)
-    }
+        const kitten = document.createElement('span');
+        kitten.textContent = 'all you need is love! no, hatred is the only way!';
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        console.log(`Attribute ${name} has changed from ${oldValue} to ${newValue}.`)
+        this.shadow.appendChild(styleSheet)
+        this.shadow.appendChild(kitten)
     }
 }
 
