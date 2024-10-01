@@ -1,11 +1,13 @@
 import captureMouse from '../utils/captureMouse.js';
 
-export default () => {
-    const main = document.querySelector('main');
+export {
+    canvasApp
+}
+
+function canvasApp() {
     const canvas = document.createElement('canvas');
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     const mouse = captureMouse(canvas);
     const log = document.createElement('pre');
@@ -31,5 +33,5 @@ export default () => {
         log.textContent = dist;
     }())
 
-    main.appendChild(log);
+    return canvas;
 }

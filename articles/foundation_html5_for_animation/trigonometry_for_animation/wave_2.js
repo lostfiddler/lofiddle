@@ -1,9 +1,11 @@
-export default () => {
-    const main = document.querySelector('main');
+export {
+    canvasApp
+}
+
+function canvasApp() {
     const canvas = document.createElement('canvas');
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     const range = 50;
     const centerY = canvas.height / 2;
@@ -26,4 +28,6 @@ export default () => {
         ctx.lineTo(xpos, ypos);
         ctx.stroke();
     }())
+
+    return canvas;
 }

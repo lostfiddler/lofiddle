@@ -1,85 +1,78 @@
+import Prism from 'prismjs'
 import captureMouse from '../utils/captureMouse.js';
+import arrowURL from '../arrow-1717754.png'
 
-export default () => {
+export {
+    title,
+    canvasApp,
+    article
+}
 
-const main = document.querySelector('main');
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
+function title() {
+    const titleElement = document.createElement('h1')
+    titleElement.textContent = 'Rotation Based on Mouse location'
 
-canvas.width = 1066;
-canvas.height = 600;
-main.appendChild(canvas);
+    return titleElement;
+}
 
-const debug = document.createElement('div');
-const mouse = captureMouse(canvas)
-const arrow = new Image();
+function canvasApp() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-arrow.src = '/foundation_html5_for_animation/arrow-1717754.png';
-arrow._width = 200;
-arrow._height = 200;
-arrow._x = canvas.width / 2 - arrow._width;
-arrow._y = canvas.height / 2;
+    canvas.width = 800;
+    canvas.height = 600;
 
-(function draw() {
-    window.requestAnimationFrame(draw);
-    const dx = mouse.x - arrow._x;
-    const dy = mouse.y - arrow._y;
+    const debug = document.createElement('div');
+    const mouse = captureMouse(canvas)
+    const arrow = new Image();
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillRect(canvas.width / 2, canvas.height / 2, 10, 10);
-    ctx.fillStyle = 'red'
-    ctx.save();
-    ctx.translate(arrow._x, arrow._y)
-    ctx.rotate(Math.atan2(dy, dx));
-    ctx.drawImage(arrow, 0, -85, arrow._width, arrow._height);
-    ctx.restore();
+    arrow.src = arrowURL;
+    arrow._width = 200;
+    arrow._height = 200;
+    arrow._x = canvas.width / 2 - arrow._width;
+    arrow._y = canvas.height / 2;
 
-    debug.textContent = `mouse.x: ${mouse.x}     mouse.y: ${mouse.y}`;
-})()
+    (function draw() {
+        window.requestAnimationFrame(draw);
+        const dx = mouse.x - arrow._x;
+        const dy = mouse.y - arrow._y;
 
-main.appendChild(debug);
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillRect(canvas.width / 2, canvas.height / 2, 10, 10);
+        ctx.fillStyle = 'red'
+        ctx.save();
+        ctx.translate(arrow._x, arrow._y)
+        ctx.rotate(Math.atan2(dy, dx));
+        ctx.drawImage(arrow, 0, -85, arrow._width, arrow._height);
+        ctx.restore();
 
-/***********************
-*    ARTICLE CONTENT   *
-************************/
+        debug.textContent = `mouse.x: ${mouse.x}     mouse.y: ${mouse.y}`;
+    })()
 
-const codeContainer = document.createElement('pre');
-const codeBlock = document.createElement('code');
-codeBlock.className = 'language-javascript';
+    return canvas;
 
-codeBlock.textContent = `const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-const mouse = captureMouse(canvas)
-const arrow = new Image();
+    main.appendChild(debug);
+}
 
-arrow.src = 'path/to/image'
-arrow._width = 200;
-arrow._height = 200;
-arrow._x = canvas.width / 2 - arrow._width;
-arrow._y = canvas.height / 2;
+function article() {
+    const fragment = document.createDocumentFragment()
 
-(function draw() {
-    window.requestAnimationFrame(draw);
-    const dx = mouse.x - arrow._x;
-    const dy = mouse.y - arrow._y;
+    const p1 = document.createElement('p')
+    p1.textContent = `Rotating an object in 2D involves the relationship between two
+    variables, the coordinates of our object and the coordinates of the object it
+    is rotating in relation to. In the case of the canvas application above our
+    object is the arrow and it rotates in relation to the mouse.`
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillRect(canvas.width / 2, canvas.height / 2, 10, 10);
-    ctx.fillStyle = 'red'
-    ctx.save();
-    ctx.translate(arrow._x, arrow._y)
-    ctx.rotate(Math.atan2(dy, dx));
-    ctx.drawImage(arrow, 0, -85, arrow._width, arrow._height);
-    ctx.restore();
-})()`
+    const code_block = 'var kitten = "kat"'
 
-codeContainer.appendChild(codeBlock);
-main.appendChild(codeContainer);
+    const html = Prism.highlight(code_block, Prism.languages.javascript, 'javascript')
+    const pre = document.createElement('pre')
+    const code = document.createElement('code')
+    pre.classList = 'language-js'
+    code.classList = 'language-js'
+    code.innerHTML = html
 
-const Para = document.createElement('p');
-Para.textContent = `
-Functions of interest are ctx.translate(), ctx.rotate(), Math.atan2() and ctx.drawImage()
-`
-
-main.appendChild(Para);
+    pre.appendChild(code)
+    fragment.append(p1, pre)
+    return fragment
 }
