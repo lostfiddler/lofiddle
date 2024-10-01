@@ -1,4 +1,5 @@
 import {defineConfig} from 'vite';
+import prism from 'vite-plugin-prismjs'
 
 export default defineConfig({
     server: {
@@ -12,5 +13,13 @@ export default defineConfig({
         fs: {
             allow: ['/home/ian/fonts', '/home/ian/animations']
         }
-    }
+    },
+    plugins: [
+        prism({
+            languages: ['javascript', 'css'],
+            plugins: ['line-numbers'],
+            theme: 'tomorrow',
+            css: true
+        })
+    ]
 })

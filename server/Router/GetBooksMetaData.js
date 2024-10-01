@@ -16,7 +16,7 @@ const books = readdirSync('../articles', {
 
 function BooksMetaData() {
     const data = [];
-    const ignore = ['.png', '.md', 'utils', 'misc'];
+    const ignore = ['.png', '.md', 'utils', 'misc', 'node_modules', 'package'];
 
     let chapter = {chapter: '', examples: []};
     let book = {book: '', chapters: []};
@@ -26,7 +26,7 @@ function BooksMetaData() {
 
         if (ignore.some(ext => file.includes(ext))) continue;
 
-        // parent dir corresponds to book, push to data array, clear book variable
+        // root dir corresponds to book, push to data array, clear book variable
         if(!file.includes('/')) {
             book.book = file; data.push(book); book = {book: '', chapters: []};
             continue;
@@ -42,11 +42,10 @@ function BooksMetaData() {
             chapter = {chapter: '', examples: []};
             continue;
         }
-
         // search for corresponding book, access its chapters[] symbol,
         // search chapters[] for corresponding chapter, push file to its examples[]
-        const chs = data[data.findIndex(obj => file.includes(obj.book))].chapters
-        chs[chs.findIndex(obj => file.includes(obj.chapter))].examples.push(file)
+        const cha = data[data.findIndex(obj => file.includes(obj.book))].chapters
+        cha[cha.findIndex(obj => file.includes(obj.chapter))].examples.push(file)
     }
 
     return data; 

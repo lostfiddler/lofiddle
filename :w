@@ -1,0 +1,62 @@
+:host {
+    flex: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #049EF4;
+}
+
+.navigation {
+    position: relative;
+    width: 300px;
+    height: 100vh;
+}
+
+.nav {
+    position: fixed;
+    background: #222;
+    width: 300px;
+    height: 100vh;
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.title {
+    background: #1565c0;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.book {
+    margin: 1px 0;
+    > ul {
+        padding: 0;
+        list-style-type: none;
+    }
+}
+
+.bookTitle {
+    font-size: 1.2rem;
+    color: #049EF4;
+}
+
+.chapterTitle {
+    font-weight: 900;
+}
+
+img {
+    display: none;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(68%) saturate(0%) hue-rotate(67deg) brightness(114%) contrast(101%);
+}
+
+/* mobile styles */
+@media screen and (max-width: 878px) {
+    :host {
+    }
+}

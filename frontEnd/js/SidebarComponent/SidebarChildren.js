@@ -1,20 +1,31 @@
 // @ts-check
 // @ts-ignore
-import {titleCase} from 'https://esm.sh/title-case@4.3.1'
-import GetBooks from '../api/GetBooks.js'
+import {titleCase} from 'https://esm.sh/title-case@4.3.1';
+import GetBooks from '../api/GetBooks.js';
+import MenuButton from './MenuButton.js';
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
-
-export default async function SidebarChildren(navigation) {
+export default async function SidebarChildren() {
     /** @type {Array<Book>} */
     const data = await GetBooks();
 
-    createBooksList(data, navigation);
+    const navigation = document.createElement('div')
+    const title = document.createElement('h1')
+    const nav = document.createElement('ul')
+
+    navigation.append(MenuButton(), title, nav)
+
+    navigation.className = 'navigation';
+    nav.className = 'nav';
+    title.className = 'title';
+    title.textContent = 'Animations';
+
+    createBooksList(data, nav);
 
     /**
      * @param {Array<Book>} books
-     * @param {HTMLMenuElement} parentHtmlElement
+     * @param {HTMLUListElement} parentHtmlElement
      */
     function createBooksList(books, parentHtmlElement) {
         for (let i = 0; i < books.length;i++) {
@@ -61,7 +72,10 @@ export default async function SidebarChildren(navigation) {
             const example_htmlElement = document.createElement('li');
 
             example_htmlElement.setAttribute('href', example) 
-            example_htmlElement.textContent = titleCase(example.slice(example.lastIndexOf('/') + 1).replace('.js', '').replace(/_/g, ' '));
+            example_htmlElement.textContent = titleCase(
+                example.slice(
+                    example.lastIndexOf('/') + 1
+                ).replace('.js', '').replace(/_/g, ' '));
             example_htmlElement.addEventListener('click', clickHandler)
             parentHtmlElement.appendChild(example_htmlElement);
         }
