@@ -19,7 +19,7 @@ a:hover {
 
 .nav {
     position: fixed;
-    background: #222;
+    border-right: 1px solid #1565c0;
     width: 300px;
     height: 100vh;
     margin: 0;
@@ -27,11 +27,16 @@ a:hover {
     list-style-type: none;
 }
 
+.titleContainer {
+    width: 300px;
+    padding-left: 1rem;
+    border-bottom: 1px solid #1565c0;
+    border-right: 1px solid #1565c0;
+}
+
 .title {
-    background: #1565c0;
     width: 300px;
     margin: 0;
-    padding: 1rem 0 1rem 1rem;
 }
 
 .book {
@@ -60,34 +65,33 @@ a:hover {
 /* mobile styles */
 @media screen and (max-width: 878px) {
     :host {
-        background: #1565c0;
+        display: flex;
+        position: absolute;
+        justify-content: space-between;
+        border-bottom: 1px solid #1565c0;
         width: 100%;
-        height: 6rem;
+        height: 49px;
     }
     .navigation {
+        width: 0;
+    }
+    .nav {
         display: none;
         .open& {
-            position: fixed;
+            background-color: #222;
+            display: block;
             top: 0;
-            height: 100%;
-            overflow: auto;
+            right: 0;
+            z-index: 1000;
         }
+    }
+    .titleContainer {
+        display: flex;
+        border-right: none;
     }
     .menuIcon {
         display: block;
-        margin: 1rem;
+        margin: auto 0;
+        margin-right: 1rem;
     }
-    /* img { */
-    /*     display: block; */
-    /*     padding: 0.5rem; */
-    /* } */
-    /* .heading { */
-    /*     display: none; */
-    /* } */
-    /* menu { */
-    /*     display: none; */
-    /*     .open& { */
-    /*         display: block; */
-    /*     } */
-    /* } */
 }

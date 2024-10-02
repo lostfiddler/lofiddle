@@ -1,6 +1,6 @@
 :host {
     font-size: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -11,5 +11,13 @@ canvas {
 }
 
 h1 {
-    text-align: center;
+    margin-top: 4rem;
+}
+
+
+@media screen and (max-width: 878px) {
+    :host {
+        margin: 1rem;
+        max-width: 100%;
+    }
 }

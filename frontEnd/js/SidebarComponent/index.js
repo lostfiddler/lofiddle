@@ -1,5 +1,5 @@
-import MenuButton from './MenuButton.js'
 import Children from './SidebarChildren.js'
+import MenuButton from './MenuButton.js';
 import StyleSheet from './styles.css?inline' // vite specific
 
 export default class SidebarComponent extends HTMLElement{
@@ -18,7 +18,7 @@ export default class SidebarComponent extends HTMLElement{
         shadow.append(
             this.Styles(),
             await Children(),
-            MenuButton()
+            MenuButton(this)
         )
     }
 

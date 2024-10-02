@@ -2,7 +2,6 @@
 // @ts-ignore
 import {titleCase} from 'https://esm.sh/title-case@4.3.1';
 import GetBooks from '../api/GetBooks.js';
-import MenuButton from './MenuButton.js';
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
 
@@ -11,13 +10,16 @@ export default async function SidebarChildren() {
     const data = await GetBooks();
 
     const navigation = document.createElement('div')
+    const titleContainer = document.createElement('div')
     const title = document.createElement('h1')
     const nav = document.createElement('ul')
 
-    navigation.append(MenuButton(), title, nav)
+    titleContainer.appendChild(title)
+    navigation.append(titleContainer, nav)
 
     navigation.className = 'navigation';
     nav.className = 'nav';
+    titleContainer.className = 'titleContainer'
     title.className = 'title';
     title.textContent = 'Animations';
 
