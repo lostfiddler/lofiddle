@@ -72,13 +72,15 @@ export default async function SidebarChildren() {
         for (let i = 0; i < examples.length;i++) {
             const example = examples[i];
             const example_htmlElement = document.createElement('li');
+            const exampleLink_htmlElement = document.createElement('a')
 
-            example_htmlElement.setAttribute('href', example) 
-            example_htmlElement.textContent = titleCase(
+            exampleLink_htmlElement.setAttribute('href', example) 
+            exampleLink_htmlElement.textContent = titleCase(
                 example.slice(
                     example.lastIndexOf('/') + 1
                 ).replace('.js', '').replace(/_/g, ' '));
-            example_htmlElement.addEventListener('click', clickHandler)
+            exampleLink_htmlElement.addEventListener('click', clickHandler)
+            example_htmlElement.appendChild(exampleLink_htmlElement)
             parentHtmlElement.appendChild(example_htmlElement);
         }
 
@@ -89,9 +91,9 @@ export default async function SidebarChildren() {
             event.preventDefault();
 
             const path = event.target.getAttribute('href')
-            const tail = path.slice(path.lastIndexOf('/'))
+            // const tail = path.slice(path.lastIndexOf('/'))
 
-            history.pushState(null, '', tail);
+            history.pushState(path, '', path.replace(/\//g, '^'));
             const popStateEvent = new PopStateEvent('popstate', {state: path});
             dispatchEvent(popStateEvent);
         }

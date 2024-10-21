@@ -18,29 +18,33 @@ a:hover {
 }
 
 .nav {
+    padding: 0;
     position: fixed;
     border-right: 1px solid #1565c0;
     width: 300px;
     height: 100vh;
     margin: 0;
-    padding: 0.5rem 0 0 1rem;
     list-style-type: none;
 }
 
 .titleContainer {
+    position: relative;
     width: 300px;
+    height: 48px;
+
+}
+
+.title {
+    position: fixed;
+    width: calc(300px - 1rem);
+    margin: 0;
     padding-left: 1rem;
     border-bottom: 1px solid #1565c0;
     border-right: 1px solid #1565c0;
 }
 
-.title {
-    width: 300px;
-    margin: 0;
-}
-
 .book {
-    margin: 1px 0;
+    margin: 0.6rem 0 0 1rem;
     > ul {
         padding: 0;
         list-style-type: none;
@@ -53,7 +57,8 @@ a:hover {
 }
 
 .chapterTitle {
-    font-weight: 900;
+    margin: 0.6rem 0;
+    color: #999;
 }
 
 .menuIcon {
@@ -88,6 +93,9 @@ a:hover {
     .titleContainer {
         display: flex;
         border-right: none;
+    }
+    .title {
+        position: relative;
     }
     .menuIcon {
         display: block;

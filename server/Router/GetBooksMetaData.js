@@ -9,14 +9,14 @@ export default function GetBooksMetaData(_request, res) {
     return;
 }
 
-const books = readdirSync('../articles', {
+const books = readdirSync('../frontEnd/articles', {
     encoding: 'utf8',
     recursive: true
 })
 
 function BooksMetaData() {
     const data = [];
-    const ignore = ['.png', '.md', 'utils', 'misc', 'node_modules', 'package'];
+    const ignore = ['images', '.png', '.md', 'utils', 'misc', 'node_modules', 'package'];
 
     let chapter = {chapter: '', examples: []};
     let book = {book: '', chapters: []};
@@ -28,7 +28,9 @@ function BooksMetaData() {
 
         // root dir corresponds to book, push to data array, clear book variable
         if(!file.includes('/')) {
-            book.book = file; data.push(book); book = {book: '', chapters: []};
+            book.book = file;
+            data.push(book); 
+            book = {book: '', chapters: []};
             continue;
         }
 

@@ -9,5 +9,5 @@ export default async (path) => {
     
     const [book, chapter, example] = path.replace('.js', '').split('/')
 
-    return await import(`../../../articles/${book}/${chapter}/${example}.js`)
+    return await import(`../../articles/${book}/${chapter}/${example}.js`)
 }

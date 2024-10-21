@@ -6,13 +6,18 @@
     font-family: 'Sedan SC';
     src: url(/home/ian/fonts/serif/Sedan_SC/SedanSC-Regular.ttf);
 }
+@font-face {
+    font-family: 'Afacad Flux';
+    src: url(/fonts/Afacad_Flux/AfacadFlux-VariableFont_slnt\,wght.ttf);
+    font-weight: 100 1000;
+}
 :root {
     --bg0: #171717;
     --fg0: #ddd;
 }
 
 body {
-    font-family: 'EB Garamond';
+    font-family: 'Afacad Flux';
     font-size: 16px;
     background: var(--bg0);
     color: var(--fg0);
