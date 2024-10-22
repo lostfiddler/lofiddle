@@ -91,9 +91,9 @@ export default async function SidebarChildren() {
             event.preventDefault();
 
             const path = event.target.getAttribute('href')
-            // const tail = path.slice(path.lastIndexOf('/'))
+            const tail = path.slice(path.lastIndexOf('/'))
 
-            history.pushState(path, '', path.replace(/\//g, '^'));
+            history.pushState(path, '', tail);
             const popStateEvent = new PopStateEvent('popstate', {state: path});
             dispatchEvent(popStateEvent);
         }

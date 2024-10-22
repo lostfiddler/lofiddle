@@ -8,37 +8,28 @@ export default class PostComponent extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.styleSheet = document.createElement('style');
         this.prismCSS = document.createElement('style');
-    }
-
-    async connectedCallback() {
-        await this.RenderView();
-    }
-
-    async RenderView() {
-        this.prismCSS.textContent = prismCSSRaw
-        this.shadow.appendChild(this.prismCSS)
-        this.styleSheet.textContent = Style;
-
-        if (performance.navigation.type === performance.navigation.TYPE_RELOAD ||
-            performance.navigation.type === performance.navigation.TYPE_NAVIGATE) {
-            await this.Render(location.pathname.replace(/%5E/g, '/').slice(1))
-        }
 
         window.addEventListener('popstate', async (e) => {
             const path = e.state || history.state.path;
-            await this.Render(path)
+            const module = await GetArticle(path)
+            this.article = module.article()
+
+            this.shadow.replaceChildren(
+                this.styleSheet,
+                this.prismCSS,
+                this.article
+            )
         });
     }
 
-    async Render(path) {
-        const module = await GetArticle(path)
-        this.article = module.article()
+    connectedCallback() {
+        this.RenderView();
+    }
 
-        this.shadow.replaceChildren(
-            this.styleSheet,
-            this.prismCSS,
-            this.article
-        )
+    RenderView() {
+        this.prismCSS.textContent = prismCSSRaw
+        this.shadow.appendChild(this.prismCSS)
+        this.styleSheet.textContent = Style;
     }
 }
 
