@@ -4,6 +4,7 @@ import ArticleComponent from './ArticleComponent/index.js';
 const app = document.querySelector('#app');
 const Sidebar = new SidebarComponent();
 const Article = new ArticleComponent();
+Article.setAttribute('path', 'zabba')
 
 app.appendChild(Sidebar);
 app.appendChild(Article);
