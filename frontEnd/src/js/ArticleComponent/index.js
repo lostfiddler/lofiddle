@@ -1,5 +1,5 @@
 import GetArticle from './Article.js';
-import prismCSSRaw from '../../node_modules/prismjs/themes/prism-tomorrow.min.css?raw'
+import prismCSSRaw from '../../../node_modules/prismjs/themes/prism-tomorrow.min.css?raw'
 import Style from './style.css?inline';
 
 export default class PostComponent extends HTMLElement {

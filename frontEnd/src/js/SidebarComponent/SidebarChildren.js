@@ -1,6 +1,6 @@
 // @ts-check
 // @ts-ignore
-import {titleCase} from 'https://esm.sh/title-case@4.3.1';
+import {titleCase} from 'title-case';
 import GetBooks from '../api/GetBooks.js';
 
 /** @typedef {{book: string, chapters: Array<{chapter: string, examples: string[]}>}} Book */
