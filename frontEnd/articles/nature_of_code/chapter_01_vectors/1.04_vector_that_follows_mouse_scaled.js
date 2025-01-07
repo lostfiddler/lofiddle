@@ -1,9 +1,17 @@
-export default () => {
-    const main = document.querySelector('main');
+export function article() {
+    const fragment = document.createDocumentFragment();
+    const title = document.createElement('h1')
+    title.textContent = 'Vector that Follows Mouse Scaled'
+
+
+    fragment.append(title, canvasApp())
+    return fragment
+}
+
+function canvasApp() {
     const canvas = document.createElement("canvas");
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
 
     const width = canvas.width;
     const height = canvas.height;
@@ -32,4 +40,5 @@ export default () => {
 
         window.requestAnimationFrame(draw);
     }
+    return canvas
 }

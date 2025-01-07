@@ -1,10 +1,18 @@
-export default () => {
-    const main = document.querySelector('main');
+export function article() {
+    const fragment = document.createDocumentFragment();
+    const title = document.createElement('h1')
+    title.textContent = 'Vector Normailzation'
+
+
+    fragment.append(title, canvasApp())
+    return fragment
+}
+
+function canvasApp() {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext('2d');
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
 
     const width = canvas.width;
     const height = canvas.height;
@@ -30,4 +38,5 @@ export default () => {
         ctx.lineTo(origin[0] + normalizedX * 50, origin[1] + normalizedY * 50);
         ctx.stroke();
     }
+    return canvas
 }

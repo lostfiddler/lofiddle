@@ -61,15 +61,24 @@ export function article() {
         const dy = mouse.y - arrow._y;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        ctx.fillRect(canvas.width / 2, canvas.height / 2, 10, 10);
+        ctx.fillRect(
+            canvas.width / 2, 
+            canvas.height / 2, 
+            10, 
+            10
+        );
         ctx.fillStyle = 'red'
         ctx.save();
         ctx.translate(arrow._x, arrow._y)
         ctx.rotate(Math.atan2(dy, dx));
-        ctx.drawImage(arrow, 0, -85, arrow._width, arrow._height);
+        ctx.drawImage(
+            arrow,
+            0,
+            -85,
+            arrow._width,
+            arrow._height
+        );
         ctx.restore();
-
-        debug.textContent = \`mouse.x: \${mouse.x}     mouse.y: \${mouse.y}\`;
     })()
 
     return canvas;

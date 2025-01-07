@@ -1,10 +1,18 @@
 import p5 from 'https://esm.sh/p5@1.9.3';
-export default () => {
-    const main = document.querySelector('main');
+
+export function article() {
+    const fragment = document.createDocumentFragment();
+    const title = document.createElement('h1')
+    title.textContent = 'Motion: Random Acceleration'
+
+    fragment.append(title, canvasApp())
+    return fragment
+}
+
+function canvasApp() {
     const canvas = document.createElement("canvas");
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
     const ctx = canvas.getContext("2d");
 
     const width = canvas.width;
@@ -59,4 +67,5 @@ export default () => {
         mover.checkEdges();
         window.requestAnimationFrame(animate)
     }
+    return canvas
 }

@@ -1,9 +1,17 @@
-export default () => {
-    const main = document.querySelector('main');
+export function article() {
+    const fragment = document.createDocumentFragment();
+    const title = document.createElement('h1')
+    title.textContent = 'Bouncing Ball with Vectors'
+
+
+    fragment.append(title, canvasApp())
+    return fragment
+}
+
+function canvasApp() {
     const canvas = document.createElement("canvas");
     canvas.width = 1066;
     canvas.height = 600;
-    main.appendChild(canvas);
     const ctx = canvas.getContext("2d");
     const width = canvas.width;
     const height = canvas.height;
@@ -31,4 +39,5 @@ export default () => {
 
         window.requestAnimationFrame(draw);
     }
+    return canvas
 }
