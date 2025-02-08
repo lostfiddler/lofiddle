@@ -1,11 +1,15 @@
 {
     "type": "module",
     "devDependencies": {
-        "vite": "^5.4.1"
+        "@types/katex": "^0.16.7",
+        "@types/p5": "^1.7.6",
+        "@types/prismjs": "^1.26.5",
+        "vite": "^5.4.11"
     },
     "dependencies": {
-        "@justinribeiro/code-block": "^2.0.0",
-        "@speed-highlight/core": "^1.2.6",
+        "katex": "^0.16.21",
+        "p5": "^1.11.2",
+        "preact": "^10.25.4",
         "prismjs": "^1.29.0",
         "title-case": "^4.3.2",
         "vite-plugin-prismjs": "^0.0.11"
