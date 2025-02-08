@@ -2,7 +2,6 @@ import Prism from 'prismjs'
 import captureMouse from '../utils/captureMouse.js';
 import arrowURL from '../images/arrow-1717754.png';
 
-console.log(window.env.foo)
 export function article() {
     const fragment = document.createDocumentFragment()
 
@@ -134,7 +133,4 @@ function canvasApp() {
     })()
 
     return canvas;
-
-    main.appendChild(debug);
 }
-
