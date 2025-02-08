@@ -1,5 +1,4 @@
 import {defineConfig} from 'vite';
-import prism from 'vite-plugin-prismjs'
 
 export default defineConfig({
     server: {
@@ -14,12 +13,18 @@ export default defineConfig({
             allow: ['/home/ian/fonts', '/home/ian/animations']
         }
     },
-    plugins: [
-        prism({
-            languages: ['javascript', 'css'],
-            plugins: ['line-numbers'],
-            theme: 'tomorrow',
-            css: true
-        })
-    ]
+    esbuild: {
+        jsxFactory: 'h',
+        jsxFragment: 'Fragment',
+        jsxInject: `
+            import {h, render, Fragment} from 'preact'
+        `,
+    },
+    resolve: {
+        alias: {
+            'react': 'preact/compat',
+            'react-dom': 'preact/compat',
+            'react-dom/test-utils': 'preact/test-utils'
+        }
+    }
 })
