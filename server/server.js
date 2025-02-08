@@ -1,6 +1,7 @@
 import http from 'node:http';
 import routes from './Router/index.js';
 
+const PORT = 7000;
 const server = http.createServer();
 
 server.on('request', (request, res) => {
@@ -18,6 +19,6 @@ server.on('request', (request, res) => {
     routes({ request, res });
 });
 
-server.listen(7000, () => {
-    console.log('server listening')
+server.listen(PORT, () => {
+    console.log(`server listening on port: ${PORT}`)
 });
