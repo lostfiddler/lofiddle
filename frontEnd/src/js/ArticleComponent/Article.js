@@ -7,7 +7,9 @@ export default async (path) => {
     // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
     // https://vitejs.dev/guide/features#dynamic-import
     
-    const [book, chapter, example] = path.replace('.js', '').split('/')
+    const [book, chapter, example] = path.replace(/.jsx|.js/g, '').split('/')
 
-    return await import(`../../../articles/${book}/${chapter}/${example}.js`)
+    return await import(`../../../articles/${book}/${chapter}/${example}${
+        !path.includes('.jsx') ? '.js' : '.jsx'
+    }`)
 }

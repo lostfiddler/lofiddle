@@ -15,7 +15,7 @@ export default function ListExamples(examples, parentHtmlElement) {
         exampleLink_htmlElement.textContent = titleCase(
             example.slice(
                 example.lastIndexOf('/') + 1
-            ).replace('.js', '').replace(/_/g, ' '));
+            ).replace(/.jsx|.js/g, '').replace(/_/g, ' '));
         exampleLink_htmlElement.addEventListener('click', onClickHandler)
         example_htmlElement.appendChild(exampleLink_htmlElement)
         parentHtmlElement.appendChild(example_htmlElement);
