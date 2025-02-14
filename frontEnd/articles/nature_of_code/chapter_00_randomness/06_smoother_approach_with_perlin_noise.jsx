@@ -1,4 +1,5 @@
 import p5 from 'p5';
+import {resize} from '../../misc/utils.js'
 
 const p = new p5();
 
@@ -32,12 +33,14 @@ function perlinGraph() {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
     let x = 0;
-    let yt = 0;
+    let t = 0;
+
+    resize(canvas);
 
     ctx.beginPath();
     function draw() {
         requestAnimationFrame(draw);
-        ctx.lineTo(x++, p.noise(yt += 0.01) * canvas.height);
+        ctx.lineTo(x++, p.noise(t += 0.01) * canvas.height);
         ctx.stroke();
     }
 
@@ -50,6 +53,8 @@ function uniformGraph() {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
     let x = 0;
+
+    resize(canvas)
 
     ctx.beginPath();
     function draw() {
