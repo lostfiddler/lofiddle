@@ -29,22 +29,61 @@ render(
     </>, segment00
 )
 
+
 function perlinGraph() {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
+    // TODO buffer grows indeffinetly, need to fix
+    // TODO second call to kitten() causes animation to lag, need fix
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
     let x = 0;
     let t = 0;
+    let i = 0;
+    let buffer = kitten();
 
+    p.noiseSeed(21)
+
+    // reduse pixelation
     resize(canvas);
 
-    ctx.beginPath();
+    // initial frame
+    ctx.drawImage(buffer[0], 0, 0, canvas.width, canvas.height)
+
     function draw() {
         requestAnimationFrame(draw);
-        ctx.lineTo(x++, p.noise(t += 0.01) * canvas.height);
-        ctx.stroke();
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        carousel()
     }
 
-    draw();
+    function carousel() {
+        if (x < -canvas.width) {
+            i++;
+            x = 0;
+            buffer.push(...kitten());
+        }
+        ctx.drawImage(buffer[i], x--, 0, canvas.width, canvas.height)
+        ctx.drawImage(buffer[i + 1], x + canvas.width - 5, 0, canvas.width, canvas.height)
+    }
+
+    function kitten() {
+        const a = [];
+
+        for(let i = 0;i < 2;i++) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            resize(canvas)
+
+            ctx.strokeStyle = 'red'
+            ctx.beginPath()
+            for (let x1 = 0;x1 < canvas.width;x1++) {
+                ctx.lineTo(x1++, p.noise(t += 0.01) * canvas.height)
+                ctx.stroke();
+            }
+            a.push(canvas)
+        }
+        return a;
+    }
+
+    draw()
 
     return canvas;
 }
