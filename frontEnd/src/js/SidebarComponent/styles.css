@@ -25,6 +25,8 @@ a:hover {
     height: 100vh;
     margin: 0;
     list-style-type: none;
+    overflow-y: scroll;
+    scrollbar-color: grey #00000000;
 }
 
 .titleContainer {
