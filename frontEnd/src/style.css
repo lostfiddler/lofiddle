@@ -1,0 +1,39 @@
+:root {
+    --bg-primary: #222;
+    --bg-secondary: red;
+    --text-color: #fff;
+    --color-primary: #049EF4;
+    --color-primary-grey: #999;
+    --sidebar-width: 230px;
+    --sidebar-padding: 2rem;
+}
+
+body {
+    background-color: #111;
+    margin: 0;
+    color: var(--text-color);
+}
+
+canvas {
+    display: block;
+    background: #222;
+    justify-self: center;
+}
+
+#root {
+    display: flex;
+}
+
+#root div:last-child {
+    margin: 0 auto;
+}
+
+.title {
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+    #root {
+        display: block;
+    }
+}

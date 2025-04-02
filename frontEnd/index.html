@@ -3,17 +3,18 @@
 
     <head>
         <meta charset='utf-8'>
-        <title>Animations - Ian Parkinson</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>lofiddle</title>
+        <meta name='viewport' content='width=device-width'>
+        <!--<meta name="theme-color" content="#049EF4">-->
         <link rel='stylesheet' href='src/css/sanitize.css'>
         <link rel='stylesheet' href='src/css/global.css'>
     </head>
 
     <body>
-        <!-- onclick=null is to fix a bug on mobile safari where click events don't bubble up to window
-            https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html -->
-            <div id='app' onclick=null></div>
-            <script src='src/js/main.js' type='module'></script>
+        <div id='root'></div>
+        <script src="https://kit.fontawesome.com/3d0e452919.js" crossorigin="anonymous">
+        </script>
+        <script src='src/main.tsx' type='module'></script>
     </body>
 
 </html>

@@ -1,0 +1,41 @@
+import React, { useState } from "react";
+import "./style.css";
+
+export default () => {
+    const [nav, toggleNav] = useState(true);
+    const [menu, toggleMenu] = useState(true);
+
+    return (
+        <div className={nav ? "navigation-container" : "navigation-container closed"}>
+            <i
+                className={
+                    nav
+                        ? "fa-solid fa-arrow-right-from-bracket open-arrow"
+                        : "fa-solid fa-arrow-right-from-bracket open-arrow closed"
+                }
+                onClick={() => toggleNav(!nav)}
+            ></i>
+            <div className={nav ? "navigation" : "navigation closed"}>
+                <div className="header">
+                    <i
+                        className="fa-solid fa-xmark xmark"
+                        onClick={() => toggleNav(!nav)}
+                    ></i>
+                    <a href="/">
+                        <h1 className="header-title">Nature of Code</h1>
+                    </a>
+                    <i
+                        className="fa-solid fa-bars bars"
+                        onClick={() => toggleMenu(!menu)}
+                    ></i>
+                </div>
+                <ul className={menu ? "" : "opened"}>
+                    <li className="chapter">Chapter 00 Randomness</li>
+                    <li>
+                        <a href="/random_walks">01 Random Walks</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
+};
