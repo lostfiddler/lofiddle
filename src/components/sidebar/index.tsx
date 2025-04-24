@@ -35,21 +35,55 @@ export default () => {
                 </div>
                 <div className={menu ? "menu" : "menu opened"}>
                     <div className="subMenu">
-                        <span className="subMenu-title">Nature of Code</span>
-                        <ul>
-                            <li className="chapter">Chapter 00 Randomness</li>
-                            <li>
-                                <a href="/random_walks">01 Random Walks</a>
-                            </li>
-                        </ul>
+                        <details className="subMenu-title">
+                            <summary>Nature of Code</summary>
+                            <ul>
+                                <li className="chapter">
+                                    Chapter 00 Randomness
+                                </li>
+                                <li>
+                                    <a href="/random_walks">01 Random Walks</a>
+                                </li>
+                                <li>
+                                    <a href="/random_number_distribution">
+                                        02 Random Number Distribution
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/probability_and_non-uniform_distribution">
+                                        03 Probability & Non-Uniform
+                                        Distributions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/a_normal_distribution_of_random_numbers">
+                                        04 A Normal Distribution of Random
+                                        Numbers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/a_custom_distribution_of_random_numbers">
+                                        05 A Custom Distribution of Random
+                                        Numbers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/a_smoother_approach_with_perlin_noise">
+                                        06 A Smoother Approach with Perlin Noise
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
                     </div>
                     <div className="subMenu">
-                        <span className="subMenu-title">Three js</span>
-                        <ul>
-                            <a href="/hello_cube">
-                                <li>Hello Cube!</li>
-                            </a>
-                        </ul>
+                        <details className="subMenu-title">
+                            <summary>Three js</summary>
+                            <ul>
+                                <a href="/hello_cube">
+                                    <li>Hello Cube!</li>
+                                </a>
+                            </ul>
+                        </details>
                     </div>
                 </div>
             </div>

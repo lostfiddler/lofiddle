@@ -1,4 +1,4 @@
-import React, {StrictMode} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 
@@ -19,9 +19,7 @@ function App() {
 }
 
 root.render(
-    <StrictMode>
-        <App />
-    </StrictMode>
+    <App />
 )
 
 // TODO put brand in nav and modify menu
