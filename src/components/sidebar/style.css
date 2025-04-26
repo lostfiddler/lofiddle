@@ -47,13 +47,13 @@ a:hover {
 
 .menu {
     width: var(--sidebar-width);
+    
+    > details {
+        margin: 2rem 0;
+    }
 }
 
-.subMenu {
-    margin: 2rem 0;
-}
-
-.subMenu-title {
+.title {
     font-size: 1.2rem;
     color: var(--color-primary);
 }
