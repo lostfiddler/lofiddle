@@ -1,17 +1,42 @@
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./src/fonts/Comfortaa-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("./src/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+}
+
 :root {
     --bg-primary: #222;
     --bg-secondary: red;
     --text-color: #fff;
     --color-primary: #049EF4;
     --color-primary-grey: #999;
-    --sidebar-width: 230px;
-    --sidebar-padding: 2rem;
+    --sidebar-width: 300px;
+    --sidebar-padding: 1rem;
 }
 
 body {
+    font-family: "Quicksand";
+    font-size: 18px;
     background-color: #111;
-    margin: 0;
     color: var(--text-color);
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Comfortaa";
+}
+
+p {
+    line-height: 26px;
+}
+
+img {
+    display: block;
+    margin: auto;
 }
 
 canvas {
@@ -26,11 +51,17 @@ canvas {
 
 #root div:last-child {
     margin: 0 auto;
-    max-width: 550px;
+    max-width: 750px;
 }
 
 .title {
     margin-top: 3rem;
+}
+
+@media screen and (max-width: 1100px) {
+    #root div:last-child {
+        max-width: 600px;
+    }
 }
 
 @media screen and (max-width: 768px) {

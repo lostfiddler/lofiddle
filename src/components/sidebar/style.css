@@ -3,6 +3,7 @@ ul {
 }
 
 .navigation li {
+    font-size: 16px;
     list-style: none;
     margin: 0.4rem 0;
 }
@@ -42,6 +43,7 @@ a:hover {
 }
 
 .navigationTitle {
+    font-family: "Comfortaa";
     margin: 3rem 0 2rem 0;
 }
 
@@ -53,9 +55,13 @@ a:hover {
     }
 }
 
-.title {
+summary {
     font-size: 1.2rem;
     color: var(--color-primary);
+}
+
+summary:hover {
+    cursor: pointer;
 }
 
 .chapter {
@@ -74,6 +80,10 @@ a:hover {
     opacity: 100;
     transition: 0.5s;
     transition-delay: 0.5s;
+}
+
+i:hover {
+    cursor: pointer;
 }
 
 i.bars {

@@ -32,7 +32,7 @@ export default () => {
                         onClick={() => toggleNav(!nav)}
                     ></i>
                     <a href="/">
-                        <h1 className="navigationTitle">loFiddle</h1>
+                        <h1 className="navigationTitle">lofiddle</h1>
                     </a>
                     <i
                         className="fa-solid fa-bars bars"

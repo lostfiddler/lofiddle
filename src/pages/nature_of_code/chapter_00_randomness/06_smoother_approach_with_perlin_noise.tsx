@@ -18,7 +18,7 @@ export function PerlinNoise() {
 
     return (
         <div>
-            <h1>A Smoother Approach ith Perlin Noise</h1>
+            <h1>A Smoother Approach With Perlin Noise</h1>
             <p>
                 A good random number generator produces numbers that have no
                 relationship to one another and show no discernible patter.
