@@ -1,10 +1,17 @@
-import p5 from 'https://esm.sh/p5@1.9.3';
+import React from 'react';
+import p5 from 'p5';
 
+export default () => {
+    return(
+        <div>
+            <h1>Vector, Motion & Acceleration</h1>
+        </div>
+    )
+}
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
-    title.textContent = 'Array of Movers: Accelerarion to Mouse'
-
+    title.textContent = 'Vector, Motion, and Accelerarion'
 
     fragment.append(title, canvasApp())
     return fragment
@@ -21,28 +28,16 @@ function canvasApp() {
 
     new p5();
 
-    let movers = [];
-    let mouse = [];
-    document.addEventListener('mousemove', (e) => {
-        mouse = [e.clientX, e.clientY]
-    });
-
-
     class Mover {
         constructor() {
-            this.location = createVector(random(width), random(height));
+            this.location = createVector(width / 2, height / 2);
             this.velocity = createVector(0, 0);
-            this.direction;
-            this.acceleration;
-            this.topSpeed = 8;
+            this.acceleration = createVector(-0.0005, 0.005);
         }
 
         update() {
-            this.direction = createVector(mouse[0] - this.location.x, mouse[1] - this.location.y)
-            this.acceleration = this.direction.normalize().mult(0.75)
-
+            this.velocity.limit(5);
             this.velocity.add(this.acceleration);
-            this.velocity.limit(this.topSpeed);
             this.location.add(this.velocity);
         }
 
@@ -68,19 +63,15 @@ function canvasApp() {
         }
     }
 
-    for (let i = 0; i <= 10; i++) {
-        movers[i] = new Mover()
-    }
+    let mover = new Mover();
 
     window.requestAnimationFrame(animate);
 
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < movers.length; i++) {
-            movers[i].update();
-            movers[i].checkEdges();
-            movers[i].display();
-        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        mover.update();
+        mover.display();
+        mover.checkEdges();
         window.requestAnimationFrame(animate)
     }
     return canvas

@@ -1,9 +1,17 @@
-import p5 from 'https://esm.sh/p5@1.9.3';
+import React from 'react';
+import p5 from 'p5';
 
+export default () => {
+    return(
+        <div>
+            <h1>Interactive Acceleration</h1>
+        </div>
+    )
+}
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
-    title.textContent = 'Motion: Random Acceleration'
+    title.textContent = 'Interactivity with Acceleration'
 
     fragment.append(title, canvasApp())
     return fragment
@@ -20,17 +28,30 @@ function canvasApp() {
 
     new p5();
 
+    let mouse = [];
+    document.addEventListener('mousemove', (e) => {
+        mouse = [e.clientX, e.clientY]
+    });
+
+
     class Mover {
         constructor() {
             this.location = createVector(width / 2, height / 2);
             this.velocity = createVector(0, 0);
+            this.direction;
+            this.acceleration;
+            this.topSpeed = 8;
         }
 
         update() {
-            let acceleration = p5.Vector.random2D();
+            this.direction = createVector(mouse[0] - this.location.x, mouse[1] - this.location.y)
 
-            this.velocity.limit(5);
-            this.velocity.add(acceleration);
+            this.direction.normalize();
+            this.direction.mult(0.75);
+            this.acceleration = this.direction;
+
+            this.velocity.add(this.acceleration);
+            this.velocity.limit(this.topSpeed);
             this.location.add(this.velocity);
         }
 

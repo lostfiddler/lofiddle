@@ -32,7 +32,7 @@ export default () => {
 
         scene.add(cube);
 
-        function render(time) {
+        function render(time: number) {
             time *= 0.001 // convert time to seconds
 
             cube.rotation.x = time;
@@ -47,7 +47,7 @@ export default () => {
 
     return (
         <div>
-            <h1 className="title">My first three.js program!</h1>
+            <h1>My first three.js program!</h1>
             <canvas ref={canvasRef}></canvas>
             <p>This was really fun! I was introduced to all the fundamentals - 
             scenegraph, camera, mesh, and lights. Some things that stood out to

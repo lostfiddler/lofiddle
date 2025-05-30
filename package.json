@@ -1,8 +1,13 @@
 {
+    "type": "module",
+    "imports": {
+        "#assets/*": "./src/assets/*"
+    },
     "dependencies": {
         "common-tags": "^1.8.2",
         "d3-random": "^3.0.1",
         "katex": "^0.16.22",
+        "lil-gui": "^0.20.0",
         "p5": "1.11.3",
         "prism-themes": "^1.9.0",
         "prismjs": "^1.30.0",

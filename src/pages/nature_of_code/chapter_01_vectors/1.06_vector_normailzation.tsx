@@ -1,3 +1,12 @@
+import React from 'react';
+
+export default () => {
+    return(
+        <div>
+            <h1>Vector Normilzation</h1>
+        </div>
+    )
+}
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')

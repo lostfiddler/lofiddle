@@ -3,7 +3,7 @@ import p5 from "p5";
 import Prism from "prismjs";
 import "prismjs/components/prism-javascript";
 import "prism-themes/themes/prism-dracula.css";
-import figure0_8 from '../../../images/figure0-8.png'
+import figure0_8 from '#assets/images/figure0-8.png'
 import { resize } from "../../misc/utils.js";
 
 export function PerlinNoise() {

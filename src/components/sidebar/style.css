@@ -8,15 +8,6 @@ ul {
     margin: 0.4rem 0;
 }
 
-a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--color-primary);
-}
-
 .navigation-container {
     position: relative;
     width: calc(var(--sidebar-width) + calc(2 * var(--sidebar-padding)));
@@ -34,7 +25,18 @@ a:hover {
     padding: 0 var(--sidebar-padding);
     border-right: 1px solid var(--color-primary);
     overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: grey transparent;
     transition: 0.5s;
+    & a {
+        color: var(--text-color);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--color-primary);
+    }
 }
 
 .navigation.closed {
@@ -49,7 +51,7 @@ a:hover {
 
 .menu {
     width: var(--sidebar-width);
-    
+
     > details {
         margin: 2rem 0;
     }

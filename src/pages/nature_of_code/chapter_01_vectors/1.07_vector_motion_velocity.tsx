@@ -1,9 +1,18 @@
-import p5 from 'https://esm.sh/p5@1.9.3';
+import React from 'react';
+import p5 from 'p5';
+
+export default () => {
+    return(
+        <div>
+            <h1>Vector, Motion & Velocity</h1>
+        </div>
+    )
+}
 
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
-    title.textContent = 'Interactivity with Acceleration'
+    title.textContent = 'Vector, Motion, Velocity'
 
     fragment.append(title, canvasApp())
     return fragment
@@ -15,35 +24,15 @@ function canvasApp() {
     canvas.height = 600;
     const ctx = canvas.getContext("2d");
 
-    const width = canvas.width;
-    const height = canvas.height;
-
     new p5();
-
-    let mouse = [];
-    document.addEventListener('mousemove', (e) => {
-        mouse = [e.clientX, e.clientY]
-    });
-
 
     class Mover {
         constructor() {
-            this.location = createVector(width / 2, height / 2);
-            this.velocity = createVector(0, 0);
-            this.direction;
-            this.acceleration;
-            this.topSpeed = 8;
+            this.location = createVector(random(width), random(height));
+            this.velocity = createVector(random(-2, 2), random(-2, 2));
         }
 
         update() {
-            this.direction = createVector(mouse[0] - this.location.x, mouse[1] - this.location.y)
-
-            this.direction.normalize();
-            this.direction.mult(0.75);
-            this.acceleration = this.direction;
-
-            this.velocity.add(this.acceleration);
-            this.velocity.limit(this.topSpeed);
             this.location.add(this.velocity);
         }
 

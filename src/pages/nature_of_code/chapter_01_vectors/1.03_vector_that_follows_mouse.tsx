@@ -1,7 +1,17 @@
+import React from 'react';
+
+export default () => {
+    return(
+        <div>
+            <h1>A Vector that Follows the Mouse</h1>
+        </div>
+    )
+}
+
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
-    title.textContent = 'Bouncing Ball with Vectors'
+    title.textContent = 'Vector that Follows Mouse'
 
 
     fragment.append(title, canvasApp())
@@ -12,30 +22,30 @@ function canvasApp() {
     const canvas = document.createElement("canvas");
     canvas.width = 1066;
     canvas.height = 600;
-    const ctx = canvas.getContext("2d");
+
     const width = canvas.width;
     const height = canvas.height;
 
-    let arc_location = [width / 2, height / 2]
-    let velocity = [1, 3.3]
+    const ctx = canvas.getContext('2d');
+
+    let mouse = [];
+    let origin = [width / 2, height / 2]
+
+    document.addEventListener("mousemove", (e) => {
+        mouse = [e.clientX, e.clientY]
+    })
 
     window.requestAnimationFrame(draw);
 
     function draw() {
         ctx.clearRect(0, 0, width, height);
 
-        // FIXME - what is add?
-        arc_location = add(arc_location, velocity);
-        if (arc_location[0] < 50 || arc_location[0] > width - 50) {
-            velocity[0] = velocity[0] * -1;
-        }
-        if (arc_location[1] < 50 || arc_location[1] > height - 50) {
-            velocity[1] = velocity[1] * -1;
-        }
 
         ctx.beginPath();
-        ctx.arc(arc_location[0], arc_location[1], 50, 0, 360);
-        ctx.fill();
+        ctx.moveTo(origin[0], origin[1]);
+        ctx.lineTo(mouse[0], mouse[1]);
+        ctx.closePath();
+        ctx.stroke();
 
         window.requestAnimationFrame(draw);
     }

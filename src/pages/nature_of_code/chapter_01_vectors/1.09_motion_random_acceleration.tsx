@@ -1,9 +1,17 @@
-import p5 from 'https://esm.sh/p5@1.9.3';
+import React from 'react';
+import p5 from 'p5';
 
+export default () => {
+    return(
+        <div>
+            <h1>Motion: Random Acceleration</h1>
+        </div>
+    )
+}
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
-    title.textContent = 'Vector, Motion, Velocity'
+    title.textContent = 'Motion: Random Acceleration'
 
     fragment.append(title, canvasApp())
     return fragment
@@ -15,15 +23,22 @@ function canvasApp() {
     canvas.height = 600;
     const ctx = canvas.getContext("2d");
 
+    const width = canvas.width;
+    const height = canvas.height;
+
     new p5();
 
     class Mover {
         constructor() {
-            this.location = createVector(random(width), random(height));
-            this.velocity = createVector(random(-2, 2), random(-2, 2));
+            this.location = createVector(width / 2, height / 2);
+            this.velocity = createVector(0, 0);
         }
 
         update() {
+            let acceleration = p5.Vector.random2D();
+
+            this.velocity.limit(5);
+            this.velocity.add(acceleration);
             this.location.add(this.velocity);
         }
 

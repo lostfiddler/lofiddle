@@ -1,3 +1,13 @@
+import React from 'react';
+
+export default () => {
+    return(
+        <div>
+            <h1>A Scaled Vector</h1>
+        </div>
+    )
+}
+
 export function article() {
     const fragment = document.createDocumentFragment();
     const title = document.createElement('h1')
