@@ -8,11 +8,13 @@ import { CANVAS_WIDTH } from "../../../../constants";
 interface State {
     canvas: HTMLCanvasElement | null
     ctx: CanvasRenderingContext2D | null
+    paused: boolean
 }
 
 const state: State = {
     canvas: null,
-    ctx: null
+    ctx: null,
+    paused: false
 }
 
 export function RandomWalks() {
@@ -36,6 +38,7 @@ export function RandomWalks() {
                 random number between 0 and 1.
             </p>
             <canvas ref={canvasRef} />
+            {Controls()}
             <h3>Entity Class</h3>
             <pre>
                 <code className="language-js">{WalkerClass}</code>
@@ -58,9 +61,25 @@ function CanvasApp() {
 
     (function animate() {
         requestAnimationFrame(animate);
+        if (state.paused) {
+            return
+        }
+
         walker.show();
         walker.step();
     })();
+}
+
+function Controls() {
+    function pause() {
+        state.paused = !state.paused
+    }
+
+    return(
+        <div>
+            <button onClick={pause}>pause</button>
+        </div>
+    )
 }
 
 class Walker {
