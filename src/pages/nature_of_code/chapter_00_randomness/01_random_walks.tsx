@@ -3,14 +3,28 @@ import Prism from "prismjs";
 import "prismjs/components/prism-javascript";
 import "prism-themes/themes/prism-dracula.css";
 import { stripIndent } from "common-tags";
-import {CANVAS_WIDTH} from '../../../../constants'
+import { CANVAS_WIDTH } from "../../../../constants";
+
+interface State {
+    canvas: HTMLCanvasElement | null
+    ctx: CanvasRenderingContext2D | null
+}
+
+const state: State = {
+    canvas: null,
+    ctx: null
+}
 
 export function RandomWalks() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
+        state.canvas = canvasRef.current
+        state.ctx = state.canvas!.getContext('2d')
+
+        CanvasApp();
+
         Prism.highlightAll();
-        CanvasApp(canvasRef.current!);
     }, []);
 
     return (
@@ -34,37 +48,35 @@ export function RandomWalks() {
     );
 }
 
-function CanvasApp(c: HTMLCanvasElement) {
-    const canvas = c;
+function CanvasApp() {
+    const canvas = state.canvas!
 
     canvas.width = CANVAS_WIDTH;
-    canvas.height = canvas.width / 1.2
+    canvas.height = state.canvas!.width / 1.2;
 
-    let walker = new Walker(canvas);
+    let walker = new Walker();
 
     (function animate() {
         requestAnimationFrame(animate);
         walker.show();
         walker.step();
-    })()
+    })();
 }
 
-const kit = <div>katt</div>
-
 class Walker {
-    ctx: CanvasRenderingContext2D;
     x: number;
     y: number;
 
-    constructor(canvas: HTMLCanvasElement) {
-        this.ctx = canvas.getContext("2d")!;
-        this.x = canvas.width / 2;
-        this.y = canvas.height / 2;
+    constructor() {
+        this.x = state.canvas!.width / 2;
+        this.y = state.canvas!.height / 2;
     }
 
     show() {
-        this.ctx.fillStyle = "yellow";
-        this.ctx.fillRect(this.x, this.y, 1, 1);
+        const ctx = state.ctx!
+
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(this.x, this.y, 1, 1);
     }
 
     step() {
@@ -81,7 +93,6 @@ class Walker {
         }
     }
 }
-
 
 const WalkerClass = stripIndent`
     class Walker {
