@@ -6,23 +6,100 @@ import { stripIndent } from "common-tags";
 import { CANVAS_WIDTH } from "../../../../constants";
 
 interface State {
-    canvas: HTMLCanvasElement | null
-    ctx: CanvasRenderingContext2D | null
-    paused: boolean
+    canvas: HTMLCanvasElement | null;
+    ctx: CanvasRenderingContext2D | null;
+    paused: boolean;
+    walker: Walker | null;
 }
 
 const state: State = {
     canvas: null,
     ctx: null,
-    paused: false
+    paused: false,
+    walker: null,
+};
+
+class Walker {
+    position: { x: number; y: number };
+
+    constructor() {
+        this.position = {
+            x: state.canvas!.width / 2,
+            y: state.canvas!.height / 2,
+        };
+    }
+
+    show() {
+        const ctx = state.ctx!;
+
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(this.position.x, this.position.y, 1, 1);
+    }
+
+    step() {
+        let choice = Math.floor(Math.random() * 4);
+
+        if (choice === 0) {
+            this.position.x++;
+        } else if (choice === 1) {
+            this.position.x--;
+        } else if (choice === 2) {
+            this.position.y++;
+        } else {
+            this.position.y--;
+        }
+    }
+}
+
+function CanvasApp() {
+    let walker = state.walker!;
+
+    (function animate() {
+        requestAnimationFrame(animate);
+        if (state.paused) {
+            return;
+        }
+
+        walker.show();
+        walker.step();
+    })();
+}
+
+function Controls() {
+    function pause() {
+        state.paused = !state.paused;
+    }
+
+    function restart() {
+        const canvas = state.canvas!;
+        const ctx = state.ctx!;
+        const walker = state.walker!;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        walker.position = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+        };
+        console.log(walker.position);
+    }
+
+    return (
+        <div>
+            <button onClick={pause}>pause</button>
+            <button onClick={restart}>restart</button>
+        </div>
+    );
 }
 
 export function RandomWalks() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        state.canvas = canvasRef.current
-        state.ctx = state.canvas!.getContext('2d')
+        state.canvas = canvasRef.current;
+        state.canvas!.width = CANVAS_WIDTH;
+        state.canvas!.height = state.canvas!.width / 1.2;
+        state.ctx = state.canvas!.getContext("2d");
+        state.walker = new Walker();
 
         CanvasApp();
 
@@ -38,7 +115,7 @@ export function RandomWalks() {
                 random number between 0 and 1.
             </p>
             <canvas ref={canvasRef} />
-            {Controls()}
+            <Controls />
             <h3>Entity Class</h3>
             <pre>
                 <code className="language-js">{WalkerClass}</code>
@@ -49,68 +126,6 @@ export function RandomWalks() {
             </pre>
         </div>
     );
-}
-
-function CanvasApp() {
-    const canvas = state.canvas!
-
-    canvas.width = CANVAS_WIDTH;
-    canvas.height = state.canvas!.width / 1.2;
-
-    let walker = new Walker();
-
-    (function animate() {
-        requestAnimationFrame(animate);
-        if (state.paused) {
-            return
-        }
-
-        walker.show();
-        walker.step();
-    })();
-}
-
-function Controls() {
-    function pause() {
-        state.paused = !state.paused
-    }
-
-    return(
-        <div>
-            <button onClick={pause}>pause</button>
-        </div>
-    )
-}
-
-class Walker {
-    x: number;
-    y: number;
-
-    constructor() {
-        this.x = state.canvas!.width / 2;
-        this.y = state.canvas!.height / 2;
-    }
-
-    show() {
-        const ctx = state.ctx!
-
-        ctx.fillStyle = "yellow";
-        ctx.fillRect(this.x, this.y, 1, 1);
-    }
-
-    step() {
-        let choice = Math.floor(Math.random() * 4);
-
-        if (choice === 0) {
-            this.x++;
-        } else if (choice === 1) {
-            this.x--;
-        } else if (choice === 2) {
-            this.y++;
-        } else {
-            this.y--;
-        }
-    }
 }
 
 const WalkerClass = stripIndent`
