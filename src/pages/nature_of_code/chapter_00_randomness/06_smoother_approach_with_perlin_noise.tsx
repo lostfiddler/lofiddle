@@ -1,8 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import p5 from "p5";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prism-themes/themes/prism-dracula.css";
 import figure0_8 from '#assets/images/figure0-8.png'
 import { resize } from "../../misc/utils.js";
 
@@ -11,7 +8,6 @@ export function PerlinNoise() {
     const uniformGraphRef = useRef(null);
 
     useEffect(() => {
-        Prism.highlightAll();
         perlinGraph(perlinGraphRef.current!);
         uniformGraph(uniformGraphRef.current!);
     }, []);

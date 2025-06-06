@@ -1,8 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { randomNormal } from "d3-random";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prism-themes/themes/prism-dracula.css";
 
 export function NormalDistribution() {
     const canvasRef = useRef(null);
@@ -10,7 +7,6 @@ export function NormalDistribution() {
     const gaussianHighDRef = useRef(null);
 
     useEffect(() => {
-        Prism.highlightAll();
         canvasApp(canvasRef.current!);
         gaussian(9, gaussianLowDRef.current!);
         gaussian(45, gaussianHighDRef.current!);

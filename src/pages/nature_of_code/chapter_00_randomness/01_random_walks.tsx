@@ -1,7 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prism-themes/themes/prism-dracula.css";
 import { stripIndent } from "common-tags";
 import { CANVAS_WIDTH } from "../../../../constants";
 
@@ -66,8 +63,10 @@ function CanvasApp() {
 }
 
 function Controls() {
-    function pause() {
+    function pause(e: React.MouseEvent<HTMLButtonElement>) {
         state.paused = !state.paused;
+        const target = e.target as HTMLButtonElement
+        target.innerText = state.paused ? "play" : "pause";
     }
 
     function restart() {
@@ -102,8 +101,6 @@ export function RandomWalks() {
         state.walker = new Walker();
 
         CanvasApp();
-
-        Prism.highlightAll();
     }, []);
 
     return (

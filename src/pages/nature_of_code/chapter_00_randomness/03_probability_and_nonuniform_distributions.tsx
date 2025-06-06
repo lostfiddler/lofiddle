@@ -1,14 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import katex from "katex";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prism-themes/themes/prism-dracula.css";
 
 export function Probability() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        Prism.highlightAll();
         canvasApp(canvasRef.current! as HTMLCanvasElement);
     }, []);
 

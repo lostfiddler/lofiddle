@@ -1,14 +1,10 @@
 import React, { useRef, useEffect } from "react";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "prism-themes/themes/prism-dracula.css";
 import figure from "#assets/images/figure0-3.png";
 
 export function CustomDistribution() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        Prism.highlightAll();
         canvasApp(canvasRef.current!);
     });
     return (

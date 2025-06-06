@@ -87,8 +87,8 @@ export default () => {
                             </li>
                             <li className="chapter">Chapter 01 Vectors</li>
                             <li>
-                                <a href="/a_bouncing_ball_with_no_vectors">
-                                    01 - A Bouncing Ball with no Vectors
+                                <a href="/intro_to_vectors">
+                                    01 - Intro to Vectors
                                 </a>
                             </li>
                             <li>
