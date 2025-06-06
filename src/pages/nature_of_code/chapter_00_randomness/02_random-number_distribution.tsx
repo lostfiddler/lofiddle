@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import katex from "katex";
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
 
 export function RandomNumberDistribution() {
     const canvasRef = useRef(null);
@@ -7,6 +7,9 @@ export function RandomNumberDistribution() {
     function canvasApp() {
         const canvas = canvasRef.current! as HTMLCanvasElement;
         const ctx = canvas.getContext("2d")!;
+
+        canvas.width = CANVAS_WIDTH;
+        canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
 
         let randomCounts = [];
         let total = 20;

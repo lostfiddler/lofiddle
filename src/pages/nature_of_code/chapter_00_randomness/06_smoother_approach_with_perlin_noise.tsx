@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import p5 from "p5";
-import figure0_8 from '#assets/images/figure0-8.png'
-import { resize } from "../../misc/utils.js";
+
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants.js";
+import figure0_8 from "#assets/images/figure0-8.png";
 
 export function PerlinNoise() {
     const perlinGraphRef = useRef(null);
@@ -32,26 +33,27 @@ export function PerlinNoise() {
             </p>
             <p>
                 The two graphs bellow illustrates the difference between Perlin
-                noise and uniform randomness. The first graph shows Perlin
-                noise over time; note the smoothness of the curve. The second
-                graph shows noise in the form of purely random numbers over
-                time; the result is much more jagged.
+                noise and uniform randomness. The first graph shows Perlin noise
+                over time; note the smoothness of the curve. The second graph
+                shows noise in the form of purely random numbers over time; the
+                result is much more jagged.
             </p>
             <canvas ref={perlinGraphRef}></canvas>
             <canvas ref={uniformGraphRef}></canvas>
             <p>
                 The p5.js library includes a function called
-                <code className="language-js">noise()</code> which generates smooth
-                random values. The <code className="language-js">noise()</code>{" "}
-                function can take one, two, or three arguments, as noise is
-                computed in one, two, or three dimensions. Usage of the p5's
+                <code className="language-js">noise()</code> which generates
+                smooth random values. The{" "}
+                <code className="language-js">noise()</code> function can take
+                one, two, or three arguments, as noise is computed in one, two,
+                or three dimensions. Usage of the p5's
                 <code className="language-js">noise()</code> function is a bit
                 different from the standard{" "}
                 <code className="language-js">Math.random()</code> where you
                 multiply the value by the maximum.{" "}
-                <code className="language-js">noise()</code> doesn't work this way.
-                Instead, its output range is fixed: it always returns a value
-                from 0 to 1.
+                <code className="language-js">noise()</code> doesn't work this
+                way. Instead, its output range is fixed: it always returns a
+                value from 0 to 1.
             </p>
             <p>
                 One-dimensional Perlin noise can be thought of as a linear
@@ -86,9 +88,10 @@ export function PerlinNoise() {
                 </tbody>
             </table>
             <p>
-                To access a particular noise value, you have to choose a
-                "moment in time" and pass it the{" "}
-                <code className="language-js">noise()</code> function. For example:
+                To access a particular noise value, you have to choose a "moment
+                in time" and pass it the{" "}
+                <code className="language-js">noise()</code> function. For
+                example:
             </p>
             <pre>
                 <code className="language-js">{codeBlock00}</code>
@@ -123,9 +126,9 @@ export function PerlinNoise() {
             </p>
             <img src={figure0_8} width="500" />
             <p>
-                If you were to visualize this graph paper with each value
-                mapped to the brightness of a color, you would get something
-                that looks like clouds.
+                If you were to visualize this graph paper with each value mapped
+                to the brightness of a color, you would get something that looks
+                like clouds.
             </p>
             <p>
                 This effect is why noise was originally invented. If you tweak
@@ -152,6 +155,12 @@ function perlinGraph(c: HTMLCanvasElement) {
     // TODO second call to kitten() causes animation to lag, need fix
     const canvas = c;
     const ctx = canvas.getContext("2d")!;
+
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
+    canvas.style.width = `${canvas.width / 2}`;
+    canvas.style.height = `${canvas.height / 2}`;
 
     const p = new p5((instance: p5) => {
         instance.setup = () => {
@@ -199,7 +208,11 @@ function perlinGraph(c: HTMLCanvasElement) {
         for (let i = 0; i < 2; i++) {
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d")!;
-            resize(canvas);
+            canvas.width = CANVAS_WIDTH;
+            canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
+            canvas.style.width = `${canvas.width / 2}`;
+            canvas.style.height = `${canvas.height / 2}`;
 
             ctx.strokeStyle = "red";
             ctx.beginPath();
@@ -222,7 +235,11 @@ function uniformGraph(c: HTMLCanvasElement) {
     const ctx = canvas.getContext("2d")!;
     let x = 0;
 
-    resize(canvas);
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
+    canvas.style.width = `${canvas.width / 2}`;
+    canvas.style.height = `${canvas.height / 2}`;
 
     ctx.beginPath();
     function draw() {

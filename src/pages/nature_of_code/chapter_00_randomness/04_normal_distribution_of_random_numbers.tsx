@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { randomNormal } from "d3-random";
 
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
+
 export function NormalDistribution() {
     const canvasRef = useRef(null);
     const gaussianLowDRef = useRef(null);
@@ -96,6 +98,9 @@ function canvasApp(c: HTMLCanvasElement) {
     const canvas = c;
     const ctx = canvas.getContext("2d")!;
 
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
     ctx.fillStyle = "red";
     ctx.globalAlpha = 0.2;
     function draw() {
@@ -117,6 +122,9 @@ function gaussian(stdDev: number, c: HTMLCanvasElement) {
     const canvas = c;
     const ctx = canvas.getContext("2d")!;
 
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
     canvas.style.width = `${canvas.width / 2}`;
     canvas.style.height = `${canvas.height / 2}`;
 
@@ -129,7 +137,7 @@ function gaussian(stdDev: number, c: HTMLCanvasElement) {
 
     function drawGaussian() {
         const mean = canvas.width / 2;
-        const height = 7000;
+        const height = 5000;
 
         ctx.lineWidth = 4;
         ctx.strokeStyle = "red";

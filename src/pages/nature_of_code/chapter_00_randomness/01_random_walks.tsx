@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { stripIndent } from "common-tags";
-import { CANVAS_WIDTH } from "../../../../constants";
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
 
 interface State {
     canvas: HTMLCanvasElement | null;
@@ -96,7 +96,7 @@ export function RandomWalks() {
     useEffect(() => {
         state.canvas = canvasRef.current;
         state.canvas!.width = CANVAS_WIDTH;
-        state.canvas!.height = state.canvas!.width / 1.2;
+        state.canvas!.height = state.canvas!.width / CANVAS_WIDTH_RATIO;
         state.ctx = state.canvas!.getContext("2d");
         state.walker = new Walker();
 

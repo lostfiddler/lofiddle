@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from "react";
+
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
 import figure from "#assets/images/figure0-3.png";
 
 export function CustomDistribution() {
@@ -108,6 +110,9 @@ const codeExample01 = `function acceptReject() {
 function canvasApp(c: HTMLCanvasElement) {
     const canvas = c;
     const ctx = canvas.getContext("2d")!;
+
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
 
     const randomCounts: number[] = [];
 

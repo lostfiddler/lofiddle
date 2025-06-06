@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import katex from "katex";
 
+import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
+
 export function Probability() {
     const canvasRef = useRef(null);
 
@@ -103,6 +105,9 @@ class Walker {
 function canvasApp(c: HTMLCanvasElement) {
     const canvas = c;
     const ctx = canvas.getContext("2d")!;
+
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
 
     const walker = new Walker(ctx, canvas.width, canvas.height);
 
