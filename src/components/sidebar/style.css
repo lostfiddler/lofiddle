@@ -30,7 +30,7 @@ ul {
     scrollbar-color: grey transparent;
     transition: 0.5s;
     & a {
-        color: var(--text-color);
+        color: var(--text-color-one);
         text-decoration: none;
     }
 

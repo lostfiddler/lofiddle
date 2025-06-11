@@ -11,8 +11,8 @@
 :root {
     --bg-primary: #222;
     --bg-secondary: red;
-    --text-color: #37414f;
-    --text-color-two: #fff;
+    --text-color-one: #37414f;
+    --text-color-white: #fff;
     --color-primary: #049EF4;
     --color-primary-grey: #999;
     --sidebar-width: 300px;
@@ -23,7 +23,7 @@ body {
     font-family: "Quicksand";
     font-size: 16px;
     background-color: #111;
-    color: var(--text-color);
+    color: var(--text-color-one);
     margin: 0;
 }
 
@@ -34,7 +34,7 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Comfortaa";
-    color: var(--text-color-two);
+    color: var(--text-color-white);
 }
 
 p {
@@ -51,6 +51,24 @@ canvas {
     background: #222;
     justify-self: center;
     border-radius: 5px;
+}
+
+table {
+    width: 600px;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid #ffffff;
+}
+
+th {
+    color: var(--text-color-white);
+}
+
+th, td {
+    text-align: left;
+    padding: 0.5rem 0;
 }
 
 #root {
