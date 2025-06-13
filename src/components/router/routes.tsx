@@ -9,7 +9,8 @@ import { Probability } from '../../pages/nature_of_code/chapter_00_randomness/03
 import { NormalDistribution } from '../../pages/nature_of_code/chapter_00_randomness/04_normal_distribution_of_random_numbers';
 import { CustomDistribution } from '../../pages/nature_of_code/chapter_00_randomness/05_custom_distribution_of_random_numbers';
 import { PerlinNoise } from '../../pages/nature_of_code/chapter_00_randomness/06_smoother_approach_with_perlin_noise';
-import NoVectors from '../../pages/nature_of_code/chapter_01_vectors/1.01_bouncing_ball_with_no_vectors';
+// Nature of Code - Chapter 01
+import Vectors from '../../pages/nature_of_code/chapter_01_vectors/1.01_intro_to_vectors';
 import BallWithVectors from '../../pages/nature_of_code/chapter_01_vectors/1.02_bouncing_ball_with_vectors';
 import VectorThatFollowsMouse from '../../pages/nature_of_code/chapter_01_vectors/1.03_vector_that_follows_mouse';
 import ScaledVector from '../../pages/nature_of_code/chapter_01_vectors/1.04_vector_that_follows_mouse_scaled';
@@ -37,7 +38,7 @@ export default [
     {path: '/a_normal_distribution_of_random_numbers', component: <NormalDistribution />},
     {path: '/a_custom_distribution_of_random_numbers', component: <CustomDistribution />},
     {path: '/a_smoother_approach_with_perlin_noise', component: <PerlinNoise />},
-    {path: '/a_bouncing_ball_with_no_vectors', component: <NoVectors />},
+    {path: '/intro_to_vectors', component: <Vectors />},
     {path: '/a_bouncing_ball_with_vectors', component: <BallWithVectors />},
     {path: '/a_vector_that_follows_the_mouse', component: <VectorThatFollowsMouse />},
     {path: '/a_scaled_vector', component: <ScaledVector />},
