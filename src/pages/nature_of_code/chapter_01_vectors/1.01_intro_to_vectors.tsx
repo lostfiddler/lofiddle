@@ -1,13 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import { default as instance } from "p5";
 import { stripIndent } from "common-tags";
-import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
-
-const p5 = new instance((sketch) => {
-    sketch.setup = () => {
-        sketch.noCanvas();
-    };
-});
+import {p5, CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
 
 export default () => {
     const canvasExample1_1Ref = useRef(null);

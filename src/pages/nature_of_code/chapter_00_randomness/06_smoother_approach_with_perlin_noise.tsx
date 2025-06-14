@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import p5 from "p5";
 
-import { CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants.js";
+import {p5, CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants.js";
 import figure0_8 from "#assets/images/figure0-8.png";
 
 export function PerlinNoise() {
@@ -162,18 +161,12 @@ function perlinGraph(c: HTMLCanvasElement) {
     canvas.style.width = `${canvas.width / 2}`;
     canvas.style.height = `${canvas.height / 2}`;
 
-    const p = new p5((instance: p5) => {
-        instance.setup = () => {
-            instance.noCanvas();
-        };
-    });
-
     let x = 0;
     let t = 0;
     let i = 0;
     let buffer = kitten();
 
-    p.noiseSeed(21);
+    p5.noiseSeed(21);
 
     // reduce pixelation
 
@@ -217,7 +210,7 @@ function perlinGraph(c: HTMLCanvasElement) {
             ctx.strokeStyle = "red";
             ctx.beginPath();
             for (let x1 = 0; x1 < canvas.width; x1++) {
-                ctx.lineTo(x1++, p.noise((t += 0.01)) * canvas.height);
+                ctx.lineTo(x1++, p5.noise((t += 0.01)) * canvas.height);
                 ctx.stroke();
             }
             a.push(canvas);
