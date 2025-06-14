@@ -44,7 +44,7 @@ export function CustomDistribution() {
                 <i>general rule</i>, such as the higher a number, the more
                 likely it is to be picked.
             </p>
-            <img src={figure} width="500" />
+            <img src={figure} width={`${CANVAS_WIDTH}`} height="500"/>
             <p>
                 If a distribution of random numbers can be generated according
                 to the graph above, we should also be able to generate a random
