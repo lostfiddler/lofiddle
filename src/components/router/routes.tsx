@@ -11,8 +11,7 @@ import { CustomDistribution } from '../../pages/nature_of_code/chapter_00_random
 import { PerlinNoise } from '../../pages/nature_of_code/chapter_00_randomness/06_smoother_approach_with_perlin_noise';
 // Nature of Code - Chapter 01
 import Vectors from '../../pages/nature_of_code/chapter_01_vectors/1.01_intro_to_vectors';
-import BallWithVectors from '../../pages/nature_of_code/chapter_01_vectors/1.02_bouncing_ball_with_vectors';
-import VectorThatFollowsMouse from '../../pages/nature_of_code/chapter_01_vectors/1.03_vector_that_follows_mouse';
+import VectorThatFollowsMouse from '../../pages/nature_of_code/chapter_01_vectors/1.02_more_vector_math.tsx';
 import ScaledVector from '../../pages/nature_of_code/chapter_01_vectors/1.04_vector_that_follows_mouse_scaled';
 import VectorWithMagnitude from '../../pages/nature_of_code/chapter_01_vectors/1.05_vector_with_magnitude';
 import VectorNormilzation from '../../pages/nature_of_code/chapter_01_vectors/1.06_vector_normailzation';
@@ -21,6 +20,9 @@ import VectorMotionAcceleration from '../../pages/nature_of_code/chapter_01_vect
 import MotionRandomAcceleration from '../../pages/nature_of_code/chapter_01_vectors/1.09_motion_random_acceleration';
 import InteractiveAcceleration from '../../pages/nature_of_code/chapter_01_vectors/1.10_interactivity_with_acceleration_copy';
 import AccelerateToMouse from '../../pages/nature_of_code/chapter_01_vectors/1.11_array_of_movers_acceleration_to_mouse';
+// HTML/CSS
+import MousePosition from '../../pages/html_css/mouse_position.tsx';
+import DynamicBezierCurves from '../../pages/html_css/dynamic_bezier_curves.tsx';
 // Three
 import HelloCube from '../../pages/three/hello_cube'
 import LoadOBJ from '../../pages/three/load_obj'
@@ -39,7 +41,6 @@ export default [
     {path: '/a_custom_distribution_of_random_numbers', component: <CustomDistribution />},
     {path: '/a_smoother_approach_with_perlin_noise', component: <PerlinNoise />},
     {path: '/intro_to_vectors', component: <Vectors />},
-    {path: '/a_bouncing_ball_with_vectors', component: <BallWithVectors />},
     {path: '/a_vector_that_follows_the_mouse', component: <VectorThatFollowsMouse />},
     {path: '/a_scaled_vector', component: <ScaledVector />},
     {path: '/a_vector_with_magnitude', component: <VectorWithMagnitude />},
@@ -49,6 +50,9 @@ export default [
     {path: '/motion_and_random_acceleration', component: <MotionRandomAcceleration />},
     {path: '/interactivity_with_acceleration', component: <InteractiveAcceleration />},
     {path: '/movers_accelerating_to_mouse', component: <AccelerateToMouse />},
+    // html/css
+    {path: '/get_mouse_position', component: <MousePosition />},
+    {path: 'dynamic_bezier_curves', component: <DynamicBezierCurves />},
     // three.js
     {path: '/hello_cube', component: <HelloCube />},
     {path: 'load_obj', component: <LoadOBJ />},

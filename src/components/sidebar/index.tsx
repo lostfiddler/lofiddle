@@ -5,11 +5,11 @@ export default () => {
     const [nav, toggleNav] = useState(true);
     const [mobileMenu, toggleMobileMenu] = useState(true);
     const details = useRef<HTMLDetailsElement[]>([]).current;
-    const navigationRef = useRef(null)
+    const navigationRef = useRef(null);
 
     useEffect(() => {
         openDetailElements(details);
-        openNavigation(navigationRef.current!, toggleNav, nav)
+        openNavigation(navigationRef.current!, toggleNav, nav);
         handlePersistentStorage(details);
     }, []);
 
@@ -26,17 +26,20 @@ export default () => {
                         : "fa-solid fa-arrow-right-from-bracket open-arrow closed"
                 }
                 onClick={() => {
-                    toggleNav(!nav)
-                    localStorage.setItem("navigation", "open")
+                    toggleNav(!nav);
+                    localStorage.setItem("navigation", "open");
                 }}
             ></i>
-            <div ref={navigationRef} className={nav ? "navigation" : "navigation closed"}>
+            <div
+                ref={navigationRef}
+                className={nav ? "navigation" : "navigation closed"}
+            >
                 <div className="header">
                     <i
                         className="fa-solid fa-xmark xmark"
                         onClick={() => {
-                            toggleNav(!nav)
-                            localStorage.setItem("navigation", "closed")
+                            toggleNav(!nav);
+                            localStorage.setItem("navigation", "closed");
                         }}
                     ></i>
                     <a href="/">
@@ -58,7 +61,9 @@ export default () => {
                         <ul>
                             <li className="chapter">Chapter 00 Randomness</li>
                             <li>
-                                <a href="/random_walks">01 - My First Random Walk</a>
+                                <a href="/random_walks">
+                                    01 - My First Random Walk
+                                </a>
                             </li>
                             <li>
                                 <a href="/random_number_distribution">
@@ -92,55 +97,61 @@ export default () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="/a_bouncing_ball_with_vectors">
-                                    02 - A Bouncing Ball with Vectors
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/a_vector_that_follows_the_mouse">
-                                    03 - A Vector that Follows the Mouse
+                                    02 - More Vector Math
                                 </a>
                             </li>
                             <li>
                                 <a href="/a_scaled_vector">
-                                    04 - A Scaled vector
+                                    03 - A Scaled vector
                                 </a>
                             </li>
                             <li>
                                 <a href="/a_vector_with_magnitude">
-                                    05 - A Vector with Magnitude
+                                    04 - A Vector with Magnitude
                                 </a>
                             </li>
                             <li>
                                 <a href="/vector_normilzation">
-                                    06 - Vector Normilzation
+                                    05 - Vector Normilzation
                                 </a>
                             </li>
                             <li>
                                 <a href="/vector_motion_and_velocity">
-                                    07 - Vectors: Motion & Velocity
+                                    06 - Vectors: Motion & Velocity
                                 </a>
                             </li>
                             <li>
                                 <a href="/vector_motion_and_acceleration">
-                                    08 - Vectors: Motion & Acceleration
+                                    07 - Vectors: Motion & Acceleration
                                 </a>
                             </li>
                             <li>
                                 <a href="/motion_and_random_acceleration">
-                                    09 - Motion: Random Acceleration
+                                    08 - Motion: Random Acceleration
                                 </a>
                             </li>
                             <li>
                                 <a href="/interactivity_with_acceleration">
-                                    10 - Interactive Acceleration
+                                    09 - Interactive Acceleration
                                 </a>
                             </li>
                             <li>
                                 <a href="/movers_accelerating_to_mouse">
-                                    11 - Movers Accelerating to the Mouse
+                                    10 - Movers Accelerating to the Mouse
                                 </a>
                             </li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>HMTL/CSS</summary>
+                        <ul>
+                            <a href="/get_mouse_position">
+                                <li>Get Mouse Position</li>
+                            </a>
+                            <a href="/dynamic_bezier_curves">
+                                <li>Dynamic Bézier Curves</li>
+                            </a>
                         </ul>
                     </details>
                     <details
@@ -198,8 +209,8 @@ function openDetailElements(details: HTMLDetailsElement[]) {
 }
 
 function openNavigation(navigationEl: HTMLDivElement, toggleNav, nav) {
-    if (localStorage.getItem('navigation') === "closed") {
-        toggleNav(!nav)
+    if (localStorage.getItem("navigation") === "closed") {
+        toggleNav(!nav);
     }
 }
 
