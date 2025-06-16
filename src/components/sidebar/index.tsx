@@ -143,7 +143,12 @@ export default () => {
                             </li>
                         </ul>
                     </details>
-                    <details>
+                    <details
+                        ref={(el) => {
+                            if (el) details.push(el);
+                        }}
+                        data-name="html_css"
+                    >
                         <summary>HMTL/CSS</summary>
                         <ul>
                             <a href="/get_mouse_position">

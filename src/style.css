@@ -96,7 +96,7 @@ th, td {
     display: inline-block;
     background-color: #3e0913;
     color: #fd8f90;
-    padding: 0.5rem;
+    padding: 0.2rem 0.4rem;
     border: 1px solid #8a132c;
     border-radius: 5px;
 }
