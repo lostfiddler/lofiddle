@@ -1,21 +1,14 @@
 import React, { useRef, useEffect } from "react";
-import {Vector} from 'p5';
 
 import { p5, CANVAS_WIDTH, CANVAS_WIDTH_RATIO } from "../../../../constants";
 
-interface State {
-    mouse: Vector;
-}
-
-const state: State = {
-    mouse: p5.createVector(p5.mouseX, p5.mouseY),
-};
-
 export default () => {
-    const canvasRef = useRef(null);
+    const canvasRefExample1_3 = useRef(null);
+    const canvasRefExample1_4 = useRef(null);
 
     useEffect(() => {
-        example1_3(canvasRef.current!);
+        example1_3(canvasRefExample1_3.current!);
+        example1_4(canvasRefExample1_4.current!);
     });
 
     return (
@@ -31,8 +24,14 @@ export default () => {
                 <code className="language-js">p5.Vector</code> class.
             </p>
             <p>Lets go through a few of the key methods.</p>
-            <h2>Vector Subtraction</h2>
-            <canvas ref={canvasRef}></canvas>
+            <h3>Example 1.3: Vector Subtraction</h3>
+            <p>
+                <span className="tag-danger">Note</span> this example kinda
+                blows, need fix
+            </p>
+            <canvas ref={canvasRefExample1_3}></canvas>
+            <h3>Example 1.4: Multiplying a Vector</h3>
+            <canvas ref={canvasRefExample1_4}></canvas>
         </div>
     );
 };
@@ -59,8 +58,7 @@ function getMousePosition(e: MouseEvent) {
     x -= target.offsetLeft;
     y -= target.offsetTop;
 
-    state.mouse.x = x;
-    state.mouse.y = y;
+    return p5.createVector(x, y);
 }
 
 function example1_3(c: HTMLCanvasElement) {
@@ -72,21 +70,86 @@ function example1_3(c: HTMLCanvasElement) {
     const ctx = canvas.getContext("2d")!;
 
     let origin = { x: canvas.width / 2, y: canvas.height / 2 };
+    let mouse = p5.createVector(0,0);
 
-    canvas.onmousemove = getMousePosition;
+    canvas.onmousemove = (e) => {
+        mouse = getMousePosition(e);
+    }
 
     window.requestAnimationFrame(draw);
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.beginPath();
-        ctx.moveTo(origin.x, origin.y);
-        ctx.lineTo(state.mouse.x!, state.mouse.y!);
-        ctx.closePath();
-        ctx.stroke();
+        {
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(origin.x, origin.y);
+            ctx.stroke();
+        }
+
+        {
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+
+        {
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.closePath();
+            ctx.stroke();
+        }
 
         window.requestAnimationFrame(draw);
     }
     return canvas;
+}
+
+function example1_4(c: HTMLCanvasElement) {
+    const canvas = c;
+    const ctx = canvas.getContext("2d")!;
+
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = canvas.width / CANVAS_WIDTH_RATIO;
+
+    let center = p5.createVector(canvas.width / 2, canvas.height / 2);
+    let mouse = p5.createVector(0, 0);
+
+    canvas.onmousemove = (e) => {
+        mouse = getMousePosition(e);
+        mouse.sub(center)
+        mouse.mult(0.5)
+    }
+
+    (function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        {
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+        }
+
+        {
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+
+        {
+            ctx.lineWidth = 5;
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        requestAnimationFrame(draw);
+    })();
 }
