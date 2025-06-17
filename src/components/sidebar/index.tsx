@@ -97,48 +97,13 @@ export default () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="/a_vector_that_follows_the_mouse">
+                                <a href="/more_vector_math">
                                     02 - More Vector Math
                                 </a>
                             </li>
                             <li>
-                                <a href="/a_scaled_vector">
-                                    03 - A Scaled vector
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/a_vector_with_magnitude">
-                                    04 - A Vector with Magnitude
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/vector_normilzation">
-                                    05 - Vector Normilzation
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/vector_motion_and_velocity">
-                                    06 - Vectors: Motion & Velocity
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/vector_motion_and_acceleration">
-                                    07 - Vectors: Motion & Acceleration
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/motion_and_random_acceleration">
-                                    08 - Motion: Random Acceleration
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/interactivity_with_acceleration">
-                                    09 - Interactive Acceleration
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/movers_accelerating_to_mouse">
-                                    10 - Movers Accelerating to the Mouse
+                                    03 - Motion with Vectors
                                 </a>
                             </li>
                         </ul>

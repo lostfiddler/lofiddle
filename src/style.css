@@ -9,9 +9,9 @@
 }
 
 :root {
-    --bg-primary: #222;
+    --bg-primary: #000;
     --bg-secondary: red;
-    --text-color-one: #37414f;
+    --text-color-one: #57616f;
     --text-color-white: #fff;
     --color-primary: #049EF4;
     --color-primary-grey: #999;

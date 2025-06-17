@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router';
 import Prism from 'prismjs';
 import "prismjs/components/prism-javascript";
 import "prism-themes/themes/prism-dracula.css";
+import "prismjs/plugins/autolinker/prism-autolinker";
 
 import './style.css'
 import './my_custom_prism.css'
