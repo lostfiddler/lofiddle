@@ -1,3 +1,4 @@
+// TODO canvas apps require mouse, dosnt function on mobile
 import React, { useRef, useEffect } from "react";
 import { stripIndent } from "common-tags";
 

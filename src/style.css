@@ -9,7 +9,7 @@
 }
 
 :root {
-    --bg-primary: #000;
+    --bg-primary: #0a0a0a;
     --bg-secondary: red;
     --text-color-one: #57616f;
     --text-color-white: #fff;
@@ -22,7 +22,7 @@
 body {
     font-family: "Quicksand";
     font-size: 16px;
-    background-color: #111;
+    background-color: var(--bg-primary);
     color: var(--text-color-one);
     margin: 0;
 }
@@ -48,13 +48,14 @@ img {
 
 canvas {
     display: block;
+    width: 100%;
     background: #222;
     justify-self: center;
     border-radius: 5px;
 }
 
 table {
-    width: 600px;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -75,9 +76,9 @@ th, td {
     display: flex;
 }
 
-#root div:last-child {
+#root > :not(.navigation) {
     margin: 0 auto;
-    max-width: 750px;
+    width: 680px;
 }
 
 #canvas-container {
@@ -101,14 +102,21 @@ th, td {
     border-radius: 5px;
 }
 
-@media screen and (max-width: 1100px) {
-    #root div:last-child {
-        max-width: 600px;
-    }
-}
-
 @media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    pre {
+        font-size: 11px;
+    }
+    img {
+        width: 100%;
+        height: 90%;
+    }
     #root {
         display: block;
+    }
+    #root > :not(.navigation) {
+        width: 360px;
     }
 }

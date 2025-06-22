@@ -2,19 +2,26 @@ import React, { useRef, useState, useEffect } from "react";
 import "./style.css";
 
 export default () => {
-    const [nav, toggleNav] = useState(true);
+    const [nav, toggleNav] = useState(false);
     const [mobileMenu, toggleMobileMenu] = useState(true);
     const details = useRef<HTMLDetailsElement[]>([]).current;
     const navigationRef = useRef(null);
+    const navigationContainerRef = useRef(null);
 
     useEffect(() => {
         openDetailElements(details);
-        openNavigation(navigationRef.current!, toggleNav, nav);
+        openNavigation(toggleNav, nav);
         handlePersistentStorage(details);
+        window.onload = () => {
+            navigationRef.current!.id =""
+            navigationContainerRef.current!.id =""
+        }
     }, []);
 
     return (
         <div
+            ref={navigationContainerRef}
+            id="notransition"
             className={
                 nav ? "navigation-container" : "navigation-container closed"
             }
@@ -32,6 +39,7 @@ export default () => {
             ></i>
             <div
                 ref={navigationRef}
+                id="notransition"
                 className={nav ? "navigation" : "navigation closed"}
             >
                 <div className="header">
@@ -43,7 +51,7 @@ export default () => {
                         }}
                     ></i>
                     <a href="/">
-                        <h1 className="navigationTitle">lofiddle</h1>
+                        <h1>lofiddle</h1>
                     </a>
                     <i
                         className="fa-solid fa-bars bars"
@@ -178,9 +186,11 @@ function openDetailElements(details: HTMLDetailsElement[]) {
     }
 }
 
-function openNavigation(navigationEl: HTMLDivElement, toggleNav, nav) {
+function openNavigation(toggleNav, nav) {
     if (localStorage.getItem("navigation") === "closed") {
-        toggleNav(!nav);
+        toggleNav(false);
+    } else {
+        toggleNav(true)
     }
 }
 

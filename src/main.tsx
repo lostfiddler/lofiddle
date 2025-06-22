@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(container);
 function App() {
     useEffect(() => {
         Prism.highlightAll();
-    })
+    }, [])
 
     return (
         <>
