@@ -110,7 +110,7 @@ export default () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="/vector_motion_and_velocity">
+                                <a href="/motion_with_vectors">
                                     03 - Motion with Vectors
                                 </a>
                             </li>
