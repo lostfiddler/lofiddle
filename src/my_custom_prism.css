@@ -3,3 +3,17 @@
     padding: 0.2em 0.4em;
     border-radius: 0.2em;
 }
+
+pre {
+    position: relative;
+}
+
+.line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #ff000030;
+    border-left: 2px solid red;
+    margin-top: 1em;
+    width: calc(100% - 2px) !important;
+}

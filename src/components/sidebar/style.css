@@ -10,6 +10,7 @@
 
 .navigation-container {
     position: absolute;
+    z-index: 100;
     width: calc(var(--sidebar-width) + calc(2 * var(--sidebar-padding)));
     transition: 0.5s;
 }
