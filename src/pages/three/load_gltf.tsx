@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { stripIndent } from "common-tags";
 
 export default () => {
     const canvasRef = useRef(null);
@@ -18,6 +19,9 @@ export default () => {
                 manual.
             </p>
             <canvas ref={canvasRef} width="600" height="700"></canvas>
+            <pre className="language-js">
+                <code>{code_block}</code>
+            </pre>
             <h2>
                 <span
                     style={{ textDecoration: "underline" }}
@@ -27,14 +31,14 @@ export default () => {
                 </span>
             </h2>
             <p>
-                Plan ahead, design 3D assets so that they have their origins in
-                the correct places for animations.
+                When designing 3D assets plan ahead, so that they have their
+                origins in the correct places for animations.
             </p>
             <p>
                 The article complained about how the model has transformations
-                applied to its scale, rotation, and position values. Poor guy had to
-                come up with hacks to get the cars to animate correctly because
-                of this.
+                applied to its scale, rotation, and position values. Poor guy
+                had to come up with hacks to get the cars to animate correctly
+                because of this.
             </p>
         </div>
     );
@@ -65,7 +69,8 @@ function canvasApp(canvasRef: HTMLCanvasElement) {
 
     let cars;
     const gltfLoader = new GLTFLoader();
-    const url = "./src/assets/models/cartoon_lowpoly_small_city_free_pack/scene.gltf";
+    const url =
+        "./src/assets/models/cartoon_lowpoly_small_city_free_pack/scene.gltf";
     gltfLoader.load(url, (gltf) => {
         const root = gltf.scene;
         root.scale.set(0.001, 0.001, 0.001);
@@ -106,3 +111,20 @@ function dumpObject(obj, lines: string[] = [], islast = true, prefix = "") {
     });
     return lines;
 }
+
+const code_block = stripIndent`
+    import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+    let cars;
+
+    const gltfLoader = new GLTFLoader();
+    const url = "path/to/model";
+
+    gltfLoader.load(url, (gltf) => {
+        const root = gltf.scene;
+        root.scale.set(0.001, 0.001, 0.001);
+        scene.add(gltf.scene);
+        cars = root.getObjectByName("Cars");
+        console.log(dumpObject(root).join("\\n"));
+    });
+`;
