@@ -13,9 +13,9 @@ export default () => {
         openNavigation(toggleNav, nav);
         handlePersistentStorage(details);
         window.onload = () => {
-            navigationRef.current!.id =""
-            navigationContainerRef.current!.id =""
-        }
+            navigationRef.current!.id = "";
+            navigationContainerRef.current!.id = "";
+        };
     }, []);
 
     return (
@@ -69,33 +69,31 @@ export default () => {
                         <ul>
                             <li className="chapter">Chapter 00 Randomness</li>
                             <li>
-                                <a href="/random_walks">
-                                    01 - My First Random Walk
-                                </a>
+                                <a href="/random_walks">01 - A Random Walk</a>
                             </li>
                             <li>
                                 <a href="/random_number_distribution">
-                                    02 - Random Number Distribution
+                                    02 - Random Number Distributions
                                 </a>
                             </li>
                             <li>
                                 <a href="/probability_and_non-uniform_distribution">
-                                    03 - Probability & Non-Uniform Distributions
+                                    03 - Non-Uniform Distributions
                                 </a>
                             </li>
                             <li>
                                 <a href="/a_normal_distribution_of_random_numbers">
-                                    04 - A Normal Distribution of Random Numbers
+                                    04 - A Normal Distribution
                                 </a>
                             </li>
                             <li>
                                 <a href="/a_custom_distribution_of_random_numbers">
-                                    05 - A Custom Distribution of Random Numbers
+                                    05 - A Custom Distribution
                                 </a>
                             </li>
                             <li>
                                 <a href="/a_smoother_approach_with_perlin_noise">
-                                    06 - A Smoother Approach with Perlin Noise
+                                    06 - Perlin Noise
                                 </a>
                             </li>
                             <li className="chapter">Chapter 01 Vectors</li>
@@ -114,6 +112,55 @@ export default () => {
                                     03 - Motion with Vectors
                                 </a>
                             </li>
+                            <li className="chapter">Chapter 02 Forces</li>
+                            <li>
+                                <a href="/forces">01 - Making up Forces</a>
+                            </li>
+                            <li>
+                                <a href="/modeling_a_force">
+                                    02 - Modeling Forces
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/n_body_problem">
+                                    03 - The n-Body Problem
+                                </a>
+                            </li>
+                            <li className="chapter">Chapter 03 Oscillation</li>
+                            <li>
+                                <a href="/angles_and_angular_motion">
+                                    01 - Angles & Angular Motion
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/oscillation">02 - Oscillation</a>
+                            </li>
+                            <li>
+                                <a href="/the_pendulum">03 - Spring Forces & The Pendulum</a>
+                            </li>
+                            <li className="chapter">
+                                Chapter 04 Particle Systems
+                            </li>
+                            <li>
+                                <a href="/intro_particle_systems">
+                                    01 - Intro to Particle Stystems
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/behaviours_of_particles">
+                                    02 - Behaviours of Particles
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/textures_and_blending">
+                                    03 - Textures and Blending
+                                </a>
+                            </li>
+                            <li className="chapter">
+                                <a href="/autonomous_agents" style={{color: "inherit"}}>
+                                    Chapter 05 Autonomous Agents
+                                </a>
+                            </li>
                         </ul>
                     </details>
                     <details
@@ -124,12 +171,19 @@ export default () => {
                     >
                         <summary>HMTL/CSS</summary>
                         <ul>
-                            <a href="/get_mouse_position">
-                                <li>Get Mouse Position</li>
-                            </a>
-                            <a href="/dynamic_bezier_curves">
-                                <li>Dynamic Bézier Curves</li>
-                            </a>
+                            <li>
+                                <a href="/get_mouse_position">
+                                    Get Mouse Position
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dynamic_bezier_curves">
+                                    Dynamic Bézier Curves
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/sprites">Sprites</a>
+                            </li>
                         </ul>
                     </details>
                     <details
@@ -148,6 +202,9 @@ export default () => {
                             </a>
                             <a href="/load_gltf">
                                 <li>Laad a .gltf file</li>
+                            </a>
+                            <a href="/gltf_animations">
+                                <li>.gltf Animations</li>
                             </a>
                             <a href="/utilities">
                                 <li>Utilities</li>
@@ -190,7 +247,7 @@ function openNavigation(toggleNav, nav) {
     if (localStorage.getItem("navigation") === "closed") {
         toggleNav(false);
     } else {
-        toggleNav(true)
+        toggleNav(true);
     }
 }
 
