@@ -6,6 +6,7 @@ import "prismjs/components/prism-javascript";
 import "prism-themes/themes/prism-dracula.css";
 import "prismjs/plugins/autolinker/prism-autolinker";
 import "prismjs/plugins/line-highlight/prism-line-highlight"
+import "prismjs/plugins/line-numbers/prism-line-numbers"
 
 import './style.css'
 import './my_custom_prism.css'
