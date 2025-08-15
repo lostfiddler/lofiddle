@@ -10,7 +10,7 @@
 
 :root {
     --bg-primary: #0a0a0a;
-    --bg-secondary: red;
+    --bg-secondary: #222;
     --text-color-one: #57616f;
     --text-color-white: #fff;
     --color-primary: #049EF4;
@@ -33,8 +33,13 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0;
     font-family: "Comfortaa";
     color: var(--text-color-white);
+}
+
+li {
+    margin: 2rem 0;
 }
 
 p {
@@ -63,6 +68,10 @@ tr {
     border-bottom: 1px solid #ffffff;
 }
 
+tr:last-child {
+    border: none;
+}
+
 th {
     color: var(--text-color-white);
 }
@@ -70,6 +79,14 @@ th {
 th, td {
     text-align: left;
     padding: 0.5rem 0;
+}
+
+figure {
+    margin: 0 0 1rem 0;
+}
+
+figcaption {
+    text-align: center;
 }
 
 #root {
@@ -100,6 +117,15 @@ th, td {
     padding: 0.2rem 0.4rem;
     border: 1px solid #8a132c;
     border-radius: 5px;
+}
+
+.callout {
+    background-color: var(--bg-secondary);
+    font-weight: 900;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {
