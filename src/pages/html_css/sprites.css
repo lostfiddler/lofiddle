@@ -1,0 +1,65 @@
+.box {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    animation: rotate 3s infinite;
+}
+
+.circle {
+    display: inline-block;
+    background-color: red;
+    margin-right: 1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation: bounce alternate infinite cubic-bezier(.2, .65, .6, 1);
+}
+
+.circle.one {
+    --bounce-offset: -20px;
+    animation-duration: 200ms;
+}
+
+.circle.two {
+    --bounce-offset: -30px;
+    animation-duration: 300ms;
+}
+
+.circle.three {
+    --bounce-offset: -40px;
+    animation-duration: 400ms;
+}
+
+.sprite {
+    background-image: url("/src/assets/images/bird.png");
+    width: 170px;
+    height: 130px;
+    animation: sprite 1000ms steps(8) infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(none);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(var(--bounce-offset));
+    }
+}
+
+@keyframes sprite {
+    from {
+        background-position: 0px;
+    }
+    to {
+        background-position: -1390px;
+    }
+}
