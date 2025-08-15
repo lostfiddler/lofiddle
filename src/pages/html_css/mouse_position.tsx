@@ -1,10 +1,43 @@
+import { stripIndent } from "common-tags";
 import React from "react";
 
-export default() => {
-    return(
-        <div>TODO</div>
-    )
-}
+export default () => {
+    return (
+        <div>
+            <p>TODO</p>
+            <pre className="language-js">
+                <code>
+                    {stripIndent`
+                        function getMousePosition(e: MouseEvent) {
+                            let x: number;
+                            let y: number;
+
+                            const target = e.target! as HTMLCanvasElement;
+
+                            if (e.pageX || e.pageY) {
+                                x = e.pageX;
+                                y = e.pageY;
+                            } else {
+                                x =
+                                    e.clientX +
+                                    document.body.scrollLeft +
+                                    document.documentElement.scrollLeft;
+                                y =
+                                    e.clientY +
+                                    document.body.scrollTop +
+                                    document.documentElement.scrollTop;
+                            }
+                            x -= target.offsetLeft;
+                            y -= target.offsetTop;
+
+                            return [x, y]
+                        }
+                    `}
+                </code>
+            </pre>
+        </div>
+    );
+};
 
 function getMousePosition(e: MouseEvent) {
     let x: number;
@@ -28,6 +61,5 @@ function getMousePosition(e: MouseEvent) {
     x -= target.offsetLeft;
     y -= target.offsetTop;
 
-    //state.mouse.x = x;
-    //state.mouse.y = y;
+    return [x, y];
 }
