@@ -222,6 +222,18 @@ export default () => {
                             <a href="/adventure">
                                 <li>Adventure</li>
                             </a>
+                            <a href="/barren_room">
+                                <li>Barren Room</li>
+                            </a>
+                            <a href="/archer">
+                                <li>Archer</li>
+                            </a>
+                            <a href="/throttling_fps">
+                                <li>Throttling fps</li>
+                            </a>
+                            <a href="/rapier">
+                                <li>Rapier</li>
+                            </a>
                         </ul>
                     </details>
                 </div>

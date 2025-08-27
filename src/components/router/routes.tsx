@@ -38,6 +38,10 @@ import Utilities from "../../pages/three/utiliites";
 import GLTFAnimations from "../../pages/three/gltf_animations.tsx";
 // Arcade
 import Adventure from "../../pages/arcade/adventure";
+import BarrenRoom from "../../pages/arcade/barren_room/";
+import Archer from "../../pages/arcade/archer.tsx";
+import ThrottlingFPS from "../../pages/arcade/throttling.tsx";
+import Rapier from "../../pages/arcade/rapier.tsx";
 
 export default [
     { path: "/", component: <Home /> },
@@ -93,4 +97,8 @@ export default [
     { path: "/utilities", component: <Utilities /> },
     // Arcade
     { path: "/adventure", component: <Adventure /> },
+    { path: "/barren_room", component: <BarrenRoom />},
+    { path: "/archer", component: <Archer /> },
+    { path: "/throttling_fps", component: <ThrottlingFPS />},
+    { path: "/rapier", component: <Rapier />},
 ];
